@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 时间到 强制关卡</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#FFB48A;text-decoration:none}a:hover{color:#FFD2B8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#15192B;font-family:'Noto Sans SC',system-ui,sans-serif;color:#FFFFFF;padding:64px 22px 34px;display:flex;flex-direction:column;align-items:center;text-align:center">
+  <span style="height:34px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.1);font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;color:#E4E7EE"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>已经连续玩了 30 分钟</span>
+
+  <div style="margin-top:56px;width:180px;height:180px;border-radius:50%;background:rgba(255,106,31,.14);display:flex;align-items:center;justify-content:center">
+    <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#FF6A1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h12M6 22h12M7 2c0 5 5 6 5 10s-5 5-5 10M17 2c0 5-5 6-5 10s5 5 5 10"/><path d="M9 19c1-1 2-1.5 3-1.5s2 .5 3 1.5z" fill="#FF6A1F"/></svg>
+  </div>
+
+  <div style="font-size:30px;font-weight:900;margin-top:36px;line-height:1.35">歇一下眼睛<br>闯一关再接着玩</div>
+  <div style="font-size:16px;color:#C9CDD8;margin-top:12px;line-height:1.6">答对 3 题就能继续，<br>这一关不会扣你的时间。</div>
+
+  <div style="flex:1"></div>
+  <a href="k08-quiz.dc.html" style="width:100%;height:66px;border-radius:22px;background:#FF6A1F;box-shadow:0 5px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;gap:10px;font-size:21px;font-weight:900">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#15192B" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>开始闯关
+  </a>
+  <div style="display:flex;gap:22px;margin-top:22px;font-size:15px">
+    <a href="#">紧急电话</a>
+    <a href="k05-request.dc.html">申请加时</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

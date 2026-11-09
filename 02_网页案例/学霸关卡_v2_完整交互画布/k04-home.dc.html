@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 首页</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:40px 18px 28px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:10px;padding:0 4px">
+    <span style="width:44px;height:44px;border-radius:50%;background:#CFE3FF;border:3px solid #FFFFFF;box-sizing:border-box;display:flex;align-items:center;justify-content:center"><svg width="28" height="28" viewBox="0 0 30 30" aria-hidden="true"><circle cx="10.5" cy="13" r="2" fill="#15192B"/><circle cx="19.5" cy="13" r="2" fill="#15192B"/><path d="M10 19c1.5 2 3 2.8 5 2.8s3.5-.8 5-2.8" stroke="#15192B" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>
+    <span style="font-size:20px;font-weight:900;flex:1">小宇，晚上好</span>
+    <a href="k06-me.dc.html" style="height:40px;padding:0 14px;border-radius:999px;background:#FFFFFF;color:#15192B;display:flex;align-items:center;font-size:15px;font-weight:700">我的</a>
+  </div>
+
+  <div style="margin-top:14px;background:#FFF1E6;border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:14px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8C10 4 6 4 6 6.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></svg>
+    <span><b>妈妈：</b>作业完成得好，奖励你 30 分钟！</span>
+  </div>
+
+  <div style="margin-top:12px;background:#FFFFFF;border-radius:32px;padding:22px 20px 20px;display:flex;flex-direction:column;align-items:center">
+    <div style="width:200px;height:200px;position:relative">
+      <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="84" stroke="#EEF0F4" stroke-width="20" fill="none"/><circle cx="100" cy="100" r="84" stroke="#FF6A1F" stroke-width="20" fill="none" stroke-linecap="round" stroke-dasharray="158.3 527.8" transform="rotate(-90 100 100)"/></svg>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <span style="font-size:15px;color:#5B6275">今天还能玩</span>
+        <span class="n" style="font-size:68px;font-weight:800;line-height:1">36</span>
+        <span style="font-size:16px;font-weight:700">分钟</span>
+      </div>
+    </div>
+    <div style="font-size:14px;color:#5B6275;margin-top:8px">21:30 该睡觉啦 · 学习类应用不算时间</div>
+  </div>
+
+  <a href="k08-quiz.dc.html" style="margin-top:16px;height:72px;border-radius:22px;background:#FF6A1F;box-shadow:0 5px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;gap:10px">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#15192B" stroke="#15192B" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+    <span style="font-size:22px;font-weight:900">闯一关</span>
+    <span class="n" style="height:32px;padding:0 10px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:16px;font-weight:700;display:flex;align-items:center">+10 分钟</span>
+  </a>
+  <div style="text-align:center;font-size:13px;color:#3D4560;margin-top:12px">今天已经赚了 30 分钟，还能再赚 10 分钟</div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px">
+    <div style="background:#FFFFFF;border-radius:20px;padding:12px;text-align:center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF6A1F" aria-hidden="true"><path d="M12 22c4 0 7-2.7 7-6.5 0-3.6-2.5-5.6-4-8.5-1 2-2 3-3.5 3.5C12 7 11 4.5 9 2c0 4-4 6.5-4 12 0 4.5 3 8 7 8z"/></svg>
+      <div class="n" style="font-size:24px;font-weight:800">5 天</div><div style="font-size:12px;color:#5B6275">连续闯关</div>
+    </div>
+    <div style="background:#FFFFFF;border-radius:20px;padding:12px;text-align:center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+      <div class="n" style="font-size:24px;font-weight:800">26/30</div><div style="font-size:12px;color:#5B6275">今天答对</div>
+    </div>
+    <a href="k07-mistakes.dc.html" style="background:#FFFFFF;border-radius:20px;padding:12px;text-align:center;color:#15192B">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2556D9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 8h6"/></svg>
+      <div class="n" style="font-size:24px;font-weight:800">4 道</div><div style="font-size:12px;color:#5B6275">错题待复习</div>
+    </a>
+  </div>
+
+  <div style="flex:1"></div>
+  <a href="k05-request.dc.html" style="height:54px;border-radius:18px;background:#FFFFFF;color:#15192B;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:700">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>向爸爸妈妈申请加时
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

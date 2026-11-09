@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学霸关卡 v2 · UI 设计稿</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",system-ui,sans-serif;background:#f0eee9;color:#15192B}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;border:0}button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none}button:focus-visible,a:focus-visible{outline:2px solid #c96442;outline-offset:3px}button{color:inherit}button[hidden],[hidden]{display:none!important}
+#viewport{position:fixed;inset:0;overflow:hidden;cursor:grab;touch-action:none;background:#f0eee9}#world{position:absolute;left:0;top:0;transform-origin:0 0}#grid{position:absolute;left:-12000px;top:-12000px;width:30000px;height:30000px;pointer-events:none;z-index:-1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cdefs%3E%3Cpattern id='g' width='120' height='120' patternUnits='userSpaceOnUse'%3E%3Cpath d='M120 0H0v120' fill='none' stroke='rgba(0,0,0,0.06)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23g)'/%3E%3C/svg%3E");background-size:120px 120px}
+.board{position:absolute}.dc-card{position:relative;background:#fff;border-radius:2px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);isolation:isolate;transition:box-shadow .15s,transform .15s}iframe{display:block;border:0;background:white}.static-pan-surface{position:absolute;inset:0}.dc-header{position:absolute;bottom:100%;left:0;margin-bottom:calc(4px * var(--dc-inv-zoom,1));width:calc(100% / var(--dc-inv-zoom,1));transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom left;z-index:2;display:flex;align-items:center;container-type:inline-size;color:rgba(60,50,40,.7);user-select:none}.dc-labelrow{display:flex;align-items:center;gap:4px;height:24px;flex:1 1 auto;min-width:0}.dc-grip{flex-shrink:0;cursor:grab;display:flex;align-items:center;padding:5px 4px;border-radius:4px;transition:background .12s}.dc-grip:hover{background:rgba(0,0,0,.08)}.dc-labeltext{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;font-size:15px;line-height:18px;font-weight:500;background:transparent;color:rgba(60,50,40,.7);border-radius:4px;padding:3px 6px}.dc-labeltext:hover{background:rgba(0,0,0,.05)}.dc-btns{display:flex;flex-shrink:0;gap:2px;opacity:0;transition:opacity .12s}.board:hover .dc-btns,.board:focus-within .dc-btns{opacity:1}.dc-expand{width:22px;height:22px;padding:0;background:transparent;color:rgba(60,50,40,.7);border-radius:5px;display:flex;align-items:center;justify-content:center;text-decoration:none}.dc-expand:hover{background:rgba(0,0,0,.06);color:#2a251f}@container(max-width:110px){.dc-labeltext{visibility:hidden}.dc-grip{opacity:0}.board:hover .dc-grip{opacity:1}}
+.dragging,.dragging *{cursor:grabbing!important;user-select:none!important}.dragging iframe{pointer-events:none}.dc-dragging .dc-card{box-shadow:0 12px 40px rgba(0,0,0,.25),0 0 0 2px #c96442;transform:scale(1.02)}
+.group-title{position:absolute;margin:0;transform:scale(var(--dc-inv-zoom,1));transform-origin:top left;white-space:nowrap}.group-title h2{font-size:28px;line-height:1.1;font-weight:600;color:rgba(40,30,20,.85);letter-spacing:-.4px;margin:0 0 6px}.group-title p{font-size:16px;line-height:1.25;color:rgba(60,50,40,.6);margin:0}.note{position:absolute;margin:0;white-space:pre-wrap;overflow-wrap:break-word;background:#fef4a8;padding:14px 16px;color:#5a4a2a;box-shadow:0 2px 8px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.08);font-family:"Kaiti SC","STKaiti","KaiTi","Marker Felt",cursive;font-size:18px;line-height:1.5;z-index:5}
+.ctrl{position:fixed;top:16px;right:16px;z-index:20;width:260px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.12);padding:12px 14px;display:flex;flex-direction:column;gap:8px}.ctrl h1{font-size:14px;font-weight:700;color:#1a1b2e;margin:0}.ctrl p{font-size:11px;line-height:1.5;color:#6c7086;margin:0}.ctrl-seg{display:flex;background:#eeeef4;border-radius:9px;padding:3px;gap:3px}.ctrl-seg button{flex:1;border-radius:7px;padding:6px 0;font-size:12px;font-weight:600;background:transparent;color:#6c7086;white-space:nowrap}.ctrl-seg button.on{background:white;color:#1a1b2e;box-shadow:0 1px 4px rgba(0,0,0,.12)}.ctrl-seg button:hover{color:#1a1b2e}#percentage{font-variant-numeric:tabular-nums}#fit{flex:1.7}#reset{align-self:flex-end;font-size:12px;color:#6c7086;padding:0;background:transparent}
+#focus{position:fixed;inset:0;z-index:100;background:rgba(24,20,16,.6);backdrop-filter:blur(14px);color:white}.focus-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;z-index:2}.focus-group-wrap{position:relative}#focus-group{background:transparent;color:white;text-align:left;padding:6px 8px;border-radius:6px}#focus-group-title{font-size:18px;font-weight:600}#focus-subtitle{display:block;font-size:13px;opacity:.6;margin-top:2px}#focus-menu{position:absolute;top:100%;left:0;margin-top:4px;min-width:260px;max-height:calc(100vh - 100px);overflow:auto;background:#2a251f;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.4);padding:4px}#focus-menu button{display:block;width:100%;text-align:left;padding:8px 12px;border-radius:5px;background:transparent;color:white;font-size:14px}#focus-menu button:hover,#focus-menu button.on{background:rgba(255,255,255,.1)}#focus-close{width:32px;height:32px;border-radius:50%;background:transparent;color:rgba(255,255,255,.7);font-size:24px}#focus-close:hover{background:rgba(255,255,255,.12)}#focus-content{position:absolute;top:64px;bottom:56px;left:100px;right:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}#focus-size{position:relative;flex-shrink:0}#focus-card{transform-origin:top left;border-radius:2px;background:white;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.4)}#focus-title{font-size:14px;font-weight:500;line-height:20px;opacity:.85;text-align:center}.focus-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);color:white;font-size:26px}.focus-arrow:hover{background:rgba(255,255,255,.18)}#focus-prev{left:28px}#focus-next{right:28px}#focus-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px}#focus-dots button{width:6px;height:6px;border-radius:50%;padding:0;background:rgba(255,255,255,.3)}#focus-dots button.on{background:white}
+</style></head><body>
+<main id="viewport" aria-label="设计画布"><div id="world"><div id="grid" aria-hidden="true"></div></div></main>
+<nav class="ctrl" aria-label="画布控制"><h1>学霸关卡 v2 · UI 设计稿</h1><div class="ctrl-seg" aria-label="跳转区域"><button data-jump="main">规范</button><button data-jump="parent">家长端</button><button data-jump="child">孩子端</button><button data-jump="tv">电视端</button></div><div class="ctrl-seg" aria-label="缩放"><button id="minus" aria-label="缩小">−</button><button id="percentage" title="回到 100%"></button><button id="plus" aria-label="放大">+</button><button id="fit">适应全部</button></div><button id="reset">重置布局</button><p>点画板标题放大，←/→ 切换，Esc 退出。拖标题可移动画板。双指滑动平移，捏合或 ⌘+滚轮缩放。</p></nav>
+<div id="focus" role="dialog" aria-modal="true" aria-label="画板聚焦" hidden><div class="focus-top"><div class="focus-group-wrap"><button id="focus-group" aria-expanded="false" aria-controls="focus-menu"><span id="focus-group-title"></span> ⌄<span id="focus-subtitle"></span></button><div id="focus-menu" hidden></div></div><button id="focus-close" aria-label="关闭聚焦">×</button></div><div id="focus-content"><div id="focus-size"><div id="focus-card"></div></div><div id="focus-title"></div></div><button id="focus-prev" class="focus-arrow" aria-label="上一张">‹</button><button id="focus-next" class="focus-arrow" aria-label="下一张">›</button><div id="focus-dots"></div></div>
+<script>(function canvasApp(layout) {
+  const $ = selector => document.querySelector(selector);
+  const viewport = $('#viewport'), world = $('#world');
+  const key = 'sg-canvas-layout-v1', frames = [], boards = new Map();
+  const subtitles = {
+    np1: '登录 → 添加孩子 → 扫码配对 → 选规则模板，5 分钟开通',
+    np2: '首页 3 秒看懂孩子状态；奖励、锁定一步完成',
+    np3: '时段、应用、学习内容；修改即生效',
+    np4: '每周报告、实时位置、所有通知', np5: '账号、家庭成员、会员与价格',
+    nk1: '扫码配对、知情同意、守护权限逐项开启', nk2: '剩余时间一眼可见，申请加时发给家长',
+    nk3: '答题、答对、答错解析、英语跟读、结算', nk4: '时间用完、宵禁、家长锁定三种锁屏',
+    nt1: '同一 APK 的电视布局，方向键 + 确认键操作', main: '色彩 · 字体 · 组件 · 尺寸，三端共用'
+  };
+  const groups = [{ id: 'main', x: -1640, y: -260, text: '设计规范', maxW: 1440 },
+    ...Object.entries(layout.notes).filter(([, n]) => n.kind === 'title1').map(([id, n]) => ({ id, ...n }))];
+  const areaOf = id => id === 'main' ? 'main' : id.startsWith('np') ? 'parent' : id.startsWith('nk') ? 'child' : 'tv';
+  let saved = {};
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || '{}');
+    if (value && typeof value === 'object' && !Array.isArray(value)) saved = value;
+  } catch {}
+  let topZ = 10;
+  let scale = 1, tx = 0, ty = 0, fitted = true, drag = null, animation = 0, focused = null, restoreFocus = null;
+  const create = (tag, cls, text) => {
+    const el = document.createElement(tag); el.className = cls;
+    if (text !== undefined) el.textContent = text;
+    return el;
+  };
+  const svg = (path, size = 12) => `<svg width="${size}" height="${size}" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${path}"/></svg>`;
+  const grip = '<svg width="9" height="13" viewBox="0 0 9 13" fill="currentColor">' + [2, 6.5, 11].map(y => `<circle cx="2" cy="${y}" r="1.1"/><circle cx="7" cy="${y}" r="1.1"/>`).join('') + '</svg>';
+  const sourceFor = file => file === 'Main.dc.html' ? 'Main.local.html' : file;
+  for (const file of [...new Set([...(layout.order || []), ...Object.keys(layout.boards)])]) {
+    const b = layout.boards[file]; if (!b) continue;
+    const group = groups.find(g => file === 'Main.dc.html' ? g.id === 'main' : g.id !== 'main' && b.y === g.y + 260 && g.x <= b.x && b.x < g.x + g.maxW);
+    group.files ??= []; group.files.push(file);
+    const slot = create('section', 'board'); slot.dataset.file = file; slot.dataset.group = group.id; slot.dataset.area = areaOf(group.id);
+    const position = saved[file];
+    const valid = Number.isFinite(position?.x) && Number.isFinite(position?.y);
+    Object.assign(slot.style, { left: `${valid ? position.x : b.x}px`, top: `${valid ? position.y : b.y}px`, width: `${b.w}px`, height: `${b.h}px` });
+    // Old coordinate-only layouts remain valid; restore stacking when available.
+    if (valid && Number.isInteger(position.zIndex) && position.zIndex > 10 && position.zIndex < 2147483647) {
+      slot.style.zIndex = position.zIndex;
+      topZ = Math.max(topZ, position.zIndex);
+    }
+    const header = create('header', 'dc-header');
+    const labelrow = create('div', 'dc-labelrow');
+    const handle = create('span', 'dc-grip'); handle.innerHTML = grip; handle.title = '拖动画板';
+    const title = create('button', 'dc-labeltext', b.title); title.title = b.title;
+    labelrow.append(handle, title);
+    const buttons = create('div', 'dc-btns');
+    const expand = create('button', 'dc-expand'); expand.title = '放大'; expand.setAttribute('aria-label', '放大 ' + b.title); expand.innerHTML = svg('M7 1h4v4M5 11H1V7M11 1L7.5 4.5M1 11l3.5-3.5');
+    expand.onclick = () => openFocus(file);
+    const link = create('a', 'dc-expand'); link.href = sourceFor(file); link.target = '_blank'; link.rel = 'noopener'; link.title = '单独打开'; link.setAttribute('aria-label', '单独打开 ' + b.title); link.innerHTML = svg('M7 1h4v4M11 1L5 7M5 2H1v9h9V7');
+    buttons.append(expand, link); header.append(labelrow, buttons);
+    const card = create('div', 'dc-card');
+    const frame = create('iframe', ''); frame.src = sourceFor(file); frame.title = b.title; frame.width = b.w; frame.height = b.h;
+    frame.addEventListener('load', () => frame.contentWindow.postMessage({ channel: 'dc-canvas', type: 'connect' }, '*'));
+    frames.push(frame); card.append(frame);
+    // The static local sheet has no script bridge. A transparent canvas surface
+    // handles pan/zoom here; the focus overlay and standalone sheet stay native.
+    if (file === 'Main.dc.html') { const surface = create('div', 'static-pan-surface'); surface.setAttribute('aria-hidden', 'true'); card.append(surface); }
+    slot.append(header, card); world.append(slot); boards.set(file, slot);
+    // Pointer movement is measured in screen pixels; positions are world units.
+    header.addEventListener('pointerdown', e => {
+      if (e.button !== 0 || e.target.closest('.dc-btns')) return;
+      e.preventDefault(); e.stopPropagation(); cancelAnimationFrame(animation);
+      header.setPointerCapture(e.pointerId);
+      drag = { kind: 'board', file, slot, capture: header, pointerId: e.pointerId, x: e.screenX, y: e.screenY, ox: slot.offsetLeft, oy: slot.offsetTop, oz: slot.style.zIndex, active: false };
+    });
+    // Keyboard activation has no pointer sequence.
+    title.addEventListener('click', e => { if (e.detail === 0) openFocus(file); });
+  }
+  for (const g of groups) {
+    const el = create('section', 'group-title'); el.dataset.note = g.id; el.dataset.area = areaOf(g.id);
+    Object.assign(el.style, { left: `${g.x}px`, top: `${g.y}px` });
+    el.append(create('h2', '', g.text), create('p', '', subtitles[g.id])); world.append(el);
+  }
+  let noteIndex = 0;
+  for (const [id, n] of Object.entries(layout.notes).filter(([, n]) => n.kind !== 'title1')) {
+    const el = create('aside', 'note'); el.dataset.note = id; el.dataset.area = id.startsWith('sp') ? 'parent' : 'child';
+    Object.assign(el.style, { left: `${n.x}px`, top: `${n.y}px`, width: `${n.w}px`, transform: `rotate(${noteIndex++ % 2 ? -1.5 : 1.5}deg)` });
+    const [first, ...rest] = n.text.replace(/\\n/g, '\n').split('\n');
+    el.append(create('strong', '', first), document.createTextNode('\n\n' + rest.join('\n'))); world.append(el);
+  }
+  function bounds(area) {
+    const elements = [...world.querySelectorAll(':scope > [data-area]')].filter(el => !area || el.dataset.area === area);
+    const inv = Math.min(1 / scale, 3);
+    return elements.reduce((r, el) => {
+      const title = el.classList.contains('group-title'), board = el.classList.contains('board');
+      const x = el.offsetLeft, y = el.offsetTop - (board ? 28 * inv : 0);
+      return { x: Math.min(r.x, x), y: Math.min(r.y, y), right: Math.max(r.right, x + el.offsetWidth * (title ? inv : 1)), bottom: Math.max(r.bottom, el.offsetTop + el.offsetHeight * (title ? inv : 1)) };
+    }, { x: Infinity, y: Infinity, right: -Infinity, bottom: -Infinity });
+  }
+  function paint() {
+    world.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+    world.style.setProperty('--dc-inv-zoom', Math.min(1 / scale, 3));
+    // Give Chrome a real world extent for painting distant absolute-positioned labels.
+    const extent = bounds();
+    world.style.width = `${Math.max(1, extent.right)}px`;
+    world.style.height = `${Math.max(1, extent.bottom)}px`;
+    $('#grid').style.left = `${Math.floor((-tx / scale - 6000) / 120) * 120}px`;
+    $('#grid').style.top = `${Math.floor((-ty / scale - 6000) / 120) * 120}px`;
+    $('#percentage').textContent = `${Math.round(scale * 100)}%`;
+    const cx = (innerWidth / 2 - tx) / scale, cy = (innerHeight / 2 - ty) / scale;
+    const current = ['main', 'parent', 'child', 'tv'].find(area => { const b = bounds(area); return cx >= b.x && cx <= b.right && cy >= b.y && cy <= b.bottom; });
+    document.querySelectorAll('[data-jump]').forEach(button => { const on = button.dataset.jump === current; button.classList.toggle('on', on); button.setAttribute('aria-pressed', on); });
+  }
+  function fit(area, animate = false) {
+    cancelAnimationFrame(animation);
+    const b = bounds(area), padding = 80;
+    const s = Math.min(8, Math.max(.1, Math.min((innerWidth - padding * 2) / (b.right - b.x), (innerHeight - padding * 2) / (b.bottom - b.y))));
+    const target = { s, x: (innerWidth - (b.right - b.x) * s) / 2 - b.x * s, y: (innerHeight - (b.bottom - b.y) * s) / 2 - b.y * s };
+    fitted = !area;
+    if (!animate) { scale = s; tx = target.x; ty = target.y; paint(); return; }
+    const start = performance.now(), from = { s: scale, x: tx, y: ty };
+    const step = now => { const p = Math.min((now - start) / 300, 1), ease = 1 - (1 - p) ** 3;
+      scale = from.s + (s - from.s) * ease; tx = from.x + (target.x - from.x) * ease; ty = from.y + (target.y - from.y) * ease; paint();
+      if (p < 1) animation = requestAnimationFrame(step);
+    }; animation = requestAnimationFrame(step);
+  }
+  function zoom(factor, x = innerWidth / 2, y = innerHeight / 2) {
+    cancelAnimationFrame(animation);
+    const next = Math.min(8, Math.max(.1, scale * factor));
+    tx = x - (x - tx) * next / scale; ty = y - (y - ty) * next / scale; scale = next; fitted = false; paint();
+  }
+  function wheel(data, x, y) {
+    const mouse = data.mode !== 0 || (data.dx === 0 && Number.isInteger(data.dy) && Math.abs(data.dy) >= 40);
+    if (data.zoom && !mouse) zoom(Math.exp(-data.dy * .01), x, y);
+    else if (mouse) zoom(Math.exp(-Math.sign(data.dy) * .18), x, y);
+    else { cancelAnimationFrame(animation); tx -= data.dx; ty -= data.dy; fitted = false; paint(); }
+  }
+  function down(x, y) { cancelAnimationFrame(animation); drag = { kind: 'pan', x, y, ox: tx, oy: ty, active: false }; }
+  function move(x, y) {
+    if (!drag) return;
+    const dx = x - drag.x, dy = y - drag.y;
+    if (!drag.active && Math.hypot(dx, dy) < 4) return;
+    if (!drag.active && drag.kind === 'board') drag.slot.style.zIndex = ++topZ;
+    drag.active = true; viewport.classList.add('dragging');
+    if (drag.kind === 'board') {
+      drag.slot.classList.add('dc-dragging'); drag.slot.style.left = `${drag.ox + dx / scale}px`; drag.slot.style.top = `${drag.oy + dy / scale}px`;
+    } else { tx = drag.ox + dx; ty = drag.oy + dy; }
+    fitted = false; paint();
+  }
+  function end(cancelled = false) {
+    const ended = drag; drag = null; viewport.classList.remove('dragging');
+    if (ended?.capture?.hasPointerCapture(ended.pointerId)) ended.capture.releasePointerCapture(ended.pointerId);
+    if (ended?.kind === 'board') {
+      ended.slot.classList.remove('dc-dragging');
+      if (cancelled) { ended.slot.style.left = `${ended.ox}px`; ended.slot.style.top = `${ended.oy}px`; ended.slot.style.zIndex = ended.oz; }
+      else if (ended.active) {
+        saved[ended.file] = { x: parseFloat(ended.slot.style.left), y: parseFloat(ended.slot.style.top), zIndex: Number(ended.slot.style.zIndex) };
+        try { localStorage.setItem(key, JSON.stringify(saved)); } catch {}
+      } else openFocus(ended.file);
+    }
+    for (const frame of frames) frame.contentWindow.postMessage({ channel: 'dc-canvas', type: 'end' }, '*');
+  }
+  viewport.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || (e.target.closest('.board,.group-title,.note') && !e.target.closest('.static-pan-surface'))) return;
+    e.preventDefault(); viewport.setPointerCapture(e.pointerId); down(e.screenX, e.screenY);
+  });
+  addEventListener('pointermove', e => move(e.screenX, e.screenY));
+  addEventListener('pointerup', () => end()); addEventListener('pointercancel', () => end(true));
+  addEventListener('blur', () => { if (!document.hasFocus()) end(true); });
+  let gesturing = false, gestureBase = 1;
+  viewport.addEventListener('wheel', e => { e.preventDefault(); if (!gesturing) wheel({ dx: e.deltaX, dy: e.deltaY, mode: e.deltaMode, zoom: e.ctrlKey || e.metaKey }, e.clientX, e.clientY); }, { passive: false });
+  viewport.addEventListener('gesturestart', e => { e.preventDefault(); gesturing = true; gestureBase = scale; }, { passive: false });
+  viewport.addEventListener('gesturechange', e => { e.preventDefault(); zoom(gestureBase * e.scale / scale, e.clientX, e.clientY); }, { passive: false });
+  viewport.addEventListener('gestureend', e => { e.preventDefault(); gesturing = false; }, { passive: false });
+  addEventListener('message', e => {
+    if (e.data?.channel !== 'dc-canvas' || focused) return;
+    const frame = frames.find(f => f.contentWindow === e.source); if (!frame) return;
+    const d = e.data;
+    if (d.type === 'ready') e.source.postMessage({ channel: 'dc-canvas', type: 'connect' }, '*');
+    if (d.type === 'down') down(d.x, d.y);
+    if (d.type === 'move') move(d.x, d.y);
+    if (d.type === 'up') end();
+    if (d.type === 'wheel') { const r = frame.getBoundingClientRect(); wheel(d, r.left + d.x * scale, r.top + d.y * scale); }
+  });
+  function reset() {
+    saved = {}; topZ = 10; try { localStorage.removeItem(key); } catch {}
+    for (const [file, slot] of boards) { slot.style.left = `${layout.boards[file].x}px`; slot.style.top = `${layout.boards[file].y}px`; slot.style.zIndex = ''; }
+    paint();
+  }
+  function sizeFocus() {
+    if (!focused) return;
+    const b = layout.boards[focused]; const s = Math.min((innerWidth - 200) / b.w, (innerHeight - 120 - 36) / b.h);
+    Object.assign($('#focus-size').style, { width: `${b.w * s}px`, height: `${b.h * s}px` });
+    Object.assign($('#focus-card').style, { width: `${b.w}px`, height: `${b.h}px`, transform: `scale(${s})` });
+  }
+  function openFocus(file) {
+    if (!focused) restoreFocus = document.activeElement;
+    focused = file; const b = layout.boards[file], g = groups.find(g => g.files.includes(file));
+    $('#focus').hidden = false; viewport.inert = true; $('.ctrl').inert = true;
+    $('#focus-group-title').textContent = g.text; $('#focus-subtitle').textContent = subtitles[g.id]; $('#focus-title').textContent = b.title;
+    const frame = create('iframe', ''); frame.src = sourceFor(file); frame.title = b.title; frame.width = b.w; frame.height = b.h;
+    // Deliberately not connected to the pan bridge: focused pages keep native input and scrolling.
+    $('#focus-card').replaceChildren(frame);
+    $('#focus-dots').replaceChildren(...g.files.map(f => { const btn = create('button', f === file ? 'on' : ''); btn.setAttribute('aria-label', layout.boards[f].title); btn.setAttribute('aria-current', String(f === file)); btn.onclick = () => openFocus(f); return btn; }));
+    $('#focus-menu').replaceChildren(...groups.map(group => { const btn = create('button', group.id === g.id ? 'on' : '', group.text); btn.onclick = () => { closeMenu(); openFocus(group.files[0]); }; return btn; }));
+    sizeFocus(); $('#focus-close').focus({ preventScroll: true });
+  }
+  function closeMenu() { $('#focus-menu').hidden = true; $('#focus-group').setAttribute('aria-expanded', 'false'); }
+  function closeFocus() { focused = null; $('#focus').hidden = true; $('#focus-card').replaceChildren(); closeMenu(); viewport.inert = false; $('.ctrl').inert = false; restoreFocus?.focus?.({ preventScroll: true }); }
+  function stepFocus(direction) { const g = groups.find(g => g.files.includes(focused)); openFocus(g.files[(g.files.indexOf(focused) + direction + g.files.length) % g.files.length]); }
+  $('#focus-group').onclick = () => { const show = $('#focus-menu').hidden; $('#focus-menu').hidden = !show; $('#focus-group').setAttribute('aria-expanded', String(show)); };
+  $('#focus-close').onclick = closeFocus; $('#focus-prev').onclick = () => stepFocus(-1); $('#focus-next').onclick = () => stepFocus(1);
+  $('#focus').addEventListener('click', e => { if (e.target === $('#focus') || e.target === $('#focus-content')) closeFocus(); else if (!e.target.closest('.focus-group-wrap')) closeMenu(); });
+  addEventListener('keydown', e => {
+    if (document.activeElement?.tagName === 'IFRAME' || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable) return;
+    if (focused) {
+      if (e.key === 'Escape') { e.preventDefault(); closeFocus(); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); stepFocus(e.key === 'ArrowLeft' ? -1 : 1); }
+      return;
+    }
+    if (e.shiftKey && (e.code === 'Digit1' || e.key === '!')) { e.preventDefault(); fit(); }
+    if (e.key === '+' || e.key === '=') { e.preventDefault(); zoom(1.25); }
+    if (e.key === '-') { e.preventDefault(); zoom(1 / 1.25); }
+  });
+  $('#minus').onclick = () => zoom(1 / 1.25); $('#plus').onclick = () => zoom(1.25); $('#percentage').onclick = () => zoom(1 / scale); $('#fit').onclick = () => fit(); $('#reset').onclick = reset;
+  // Re-focus on pointer activation so a restored keyboard focus ring is not retained.
+  $('.ctrl').addEventListener('pointerdown', e => {
+    const button = e.target.closest('button');
+    if (button === document.activeElement) button.blur();
+  });
+  document.querySelectorAll('[data-jump]').forEach(btn => btn.onclick = () => fit(btn.dataset.jump, true));
+  addEventListener('resize', () => { if (fitted) fit(); sizeFocus(); });
+  fit();
+})({"v":3,"createdOnFiles":{"v":1,"at":"2026-11-06T10:00:00Z"},"title":"学霸关卡 v2 UI 设计","launch":{"view":"canvas"},"pages":[],"boards":{"Main.dc.html":{"x":-1640,"y":0,"w":1440,"h":1897,"title":"设计规范"},"p01-login.dc.html":{"x":0,"y":0,"w":390,"h":844,"title":"P01 登录","is_interactive":true},"p02-add-child.dc.html":{"x":470,"y":0,"w":390,"h":844,"title":"P02 添加孩子","is_interactive":true},"p03-pair.dc.html":{"x":940,"y":0,"w":390,"h":844,"title":"P03 配对与守护检查","is_interactive":true},"p04-template.dc.html":{"x":1410,"y":0,"w":390,"h":900,"title":"P04 选择规则模板","is_interactive":true},"p05-today.dc.html":{"x":2040,"y":0,"w":390,"h":1240,"title":"P05 今天（正常）","is_interactive":true},"p06-today-alert.dc.html":{"x":2510,"y":0,"w":390,"h":1240,"title":"P06 今天（有申请 + 守护异常）","is_interactive":true},"p07-reward-sheet.dc.html":{"x":2980,"y":0,"w":390,"h":844,"title":"P07 奖励时间","is_interactive":true},"p08-lock-sheet.dc.html":{"x":3450,"y":0,"w":390,"h":844,"title":"P08 锁定确认","is_interactive":true},"p09-rules.dc.html":{"x":0,"y":1620,"w":390,"h":1300,"title":"P09 规则","is_interactive":true},"p10-apps.dc.html":{"x":470,"y":1620,"w":390,"h":1100,"title":"P10 应用管理","is_interactive":true},"p11-learning.dc.html":{"x":940,"y":1620,"w":390,"h":1000,"title":"P11 学习内容","is_interactive":true},"p12-report.dc.html":{"x":1570,"y":1620,"w":390,"h":1500,"title":"P12 报告","is_interactive":true},"p13-location.dc.html":{"x":2040,"y":1620,"w":390,"h":844,"title":"P13 位置","is_interactive":true},"p14-inbox.dc.html":{"x":2510,"y":1620,"w":390,"h":960,"title":"P14 消息中心","is_interactive":true},"p15-me.dc.html":{"x":3140,"y":1620,"w":390,"h":980,"title":"P15 我的","is_interactive":true},"p16-membership.dc.html":{"x":3610,"y":1620,"w":390,"h":1060,"title":"P16 会员","is_interactive":true},"k01-pair.dc.html":{"x":0,"y":3620,"w":390,"h":844,"title":"K01 配对","is_interactive":true},"k02-consent.dc.html":{"x":470,"y":3620,"w":390,"h":960,"title":"K02 知情同意","is_interactive":true},"k03-guard.dc.html":{"x":940,"y":3620,"w":390,"h":1060,"title":"K03 守护设置向导","is_interactive":true},"k04-home.dc.html":{"x":1570,"y":3620,"w":390,"h":844,"title":"K04 首页","is_interactive":true},"k05-request.dc.html":{"x":2040,"y":3620,"w":390,"h":844,"title":"K05 申请加时","is_interactive":true},"k06-me.dc.html":{"x":2510,"y":3620,"w":390,"h":900,"title":"K06 我的","is_interactive":true},"k07-mistakes.dc.html":{"x":2980,"y":3620,"w":390,"h":900,"title":"K07 错题本","is_interactive":true},"k08-quiz.dc.html":{"x":0,"y":5060,"w":390,"h":844,"title":"K08 闯关 · 作答","is_interactive":true},"k09-correct.dc.html":{"x":470,"y":5060,"w":390,"h":844,"title":"K09 答对","is_interactive":true},"k10-wrong.dc.html":{"x":940,"y":5060,"w":390,"h":900,"title":"K10 答错 + 解析","is_interactive":true},"k11-speak.dc.html":{"x":1410,"y":5060,"w":390,"h":844,"title":"K11 英语跟读","is_interactive":true},"k12-result.dc.html":{"x":1880,"y":5060,"w":390,"h":844,"title":"K12 通关结算","is_interactive":true},"k13-timeup.dc.html":{"x":2510,"y":5060,"w":390,"h":844,"title":"K13 时间到（强制关卡）","is_interactive":true},"k14-lock-bedtime.dc.html":{"x":2980,"y":5060,"w":390,"h":844,"title":"K14 锁定 · 宵禁","is_interactive":true},"k15-lock-parent.dc.html":{"x":3450,"y":5060,"w":390,"h":844,"title":"K15 锁定 · 家长锁定","is_interactive":true},"t01-home.dc.html":{"x":0,"y":6340,"w":1280,"h":720,"title":"T01 电视首页"},"t02-quiz.dc.html":{"x":1360,"y":6340,"w":1280,"h":720,"title":"T02 电视闯关"},"t03-lock.dc.html":{"x":2720,"y":6340,"w":1280,"h":720,"title":"T03 电视锁定"}},"order":["Main.dc.html","p01-login.dc.html","p02-add-child.dc.html","p03-pair.dc.html","p04-template.dc.html","p05-today.dc.html","p06-today-alert.dc.html","p07-reward-sheet.dc.html","p08-lock-sheet.dc.html","p09-rules.dc.html","p10-apps.dc.html","p11-learning.dc.html","p12-report.dc.html","p13-location.dc.html","p14-inbox.dc.html","p15-me.dc.html","p16-membership.dc.html","k01-pair.dc.html","k02-consent.dc.html","k03-guard.dc.html","k04-home.dc.html","k05-request.dc.html","k06-me.dc.html","k07-mistakes.dc.html","k08-quiz.dc.html","k09-correct.dc.html","k10-wrong.dc.html","k11-speak.dc.html","k12-result.dc.html","k13-timeup.dc.html","k14-lock-bedtime.dc.html","k15-lock-parent.dc.html","t01-home.dc.html","t02-quiz.dc.html","t03-lock.dc.html"],"notes":{"np1":{"x":0,"y":-260,"text":"家长端 ① 首次开通","kind":"title1","maxW":1800},"np2":{"x":2040,"y":-260,"text":"家长端 ② 今天 · 3 秒看懂","kind":"title1","maxW":1800},"np3":{"x":0,"y":1360,"text":"家长端 ③ 规则","kind":"title1","maxW":1330},"np4":{"x":1570,"y":1360,"text":"④ 报告 · 位置 · 消息","kind":"title1","maxW":1330},"np5":{"x":3140,"y":1360,"text":"⑤ 我的 · 会员","kind":"title1","maxW":860},"nk1":{"x":0,"y":3360,"text":"孩子端 ① 配对与守护","kind":"title1","maxW":1330},"nk2":{"x":1570,"y":3360,"text":"孩子端 ② 首页 · 加时 · 我的","kind":"title1","maxW":1800},"nk3":{"x":0,"y":4800,"text":"孩子端 ③ 闯关赚时间","kind":"title1","maxW":2270},"nk4":{"x":2510,"y":4800,"text":"④ 时间到 · 锁定","kind":"title1","maxW":1330},"nt1":{"x":0,"y":6080,"text":"电视端 · 遥控器操作","kind":"title1","maxW":4000},"sp1":{"x":3920,"y":0,"w":380,"size":"m","fill":"orange","text":"交互约定（开发必读）\n· 所有远程操作点击后，按钮内依次显示：发送中 → 已送达 → 已生效，2 秒内必须有反馈；失败给出原因和重试。\n· 首页数据走长连接实时更新，下拉可手动刷新。\n· 锁定、解绑、关闭守护类操作必须二次确认；奖励时间不需要。\n· 多孩子时顶部头像条切换，当前孩子记忆到下次打开。"},"sp2":{"x":4080,"y":1620,"w":380,"size":"m","fill":"orange","text":"规则生效\n· 修改即保存，无“保存”按钮；顶部吐司提示“已同步到小宇的手机”。\n· 孩子离线时提示“将在设备联网后生效”。\n· 规则页顶部切换“上学日 / 周末与节假日”两套。"},"sk1":{"x":3920,"y":3620,"w":380,"size":"m","fill":"orange","text":"闯关反馈\n· 答对：选项变绿 + 对勾弹入 + 上扬音效 + 轻震动，0.9 秒后自动下一题。\n· 答错：所选变红、正确项变绿，展开解析，必须点“我明白了”才继续；该题进错题本。\n· 连对 3 题出现“连击”。\n· 强制关卡与主动闯关同一套页面，只是顶部原因条不同、不能退出。"},"sk2":{"x":3920,"y":5060,"w":380,"size":"m","fill":"orange","text":"锁定页通用规则\n· 三种原因：家长锁定 / 今日时间用完 / 宵禁，同一模板换文案与插图。\n· 底部始终保留：紧急电话、白名单应用、申请解锁。\n· 返回键与多任务键拦截，逃离 2 秒内拉回。"}},"designSystems":[]});</script>
+</body></html>

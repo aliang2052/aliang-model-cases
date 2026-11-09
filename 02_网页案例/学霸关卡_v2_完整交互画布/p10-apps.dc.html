@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 应用管理</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+input::placeholder{color:#8A90A2}
+</style>
+</helmet>
+<div style="width:390px;height:1100px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B">
+  <div style="height:56px;display:flex;align-items:center;padding:0 8px;margin-top:24px">
+    <a href="p09-rules.dc.html" aria-label="返回" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <span style="font-size:18px;font-weight:700;margin-left:4px">应用管理</span>
+  </div>
+
+  <div style="padding:4px 16px 0">
+    <label style="display:flex;align-items:center;gap:10px;height:44px;border-radius:12px;background:#FFFFFF;padding:0 14px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6275" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input type="search" placeholder="搜索小宇手机上的应用" aria-label="搜索应用" style="flex:1;border:0;background:transparent;font:400 15px 'Noto Sans SC',sans-serif;outline:none;color:#15192B">
+    </label>
+    <div style="display:flex;gap:8px;margin-top:12px;overflow:hidden">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+        <button style="height:34px;padding:0 12px;border-radius:999px;border:0;white-space:nowrap;background:{{t.bg}};color:{{t.fg}};font:700 13px 'Noto Sans SC',sans-serif">{{t.t}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="margin:14px 16px 0;background:#FFF1E6;border-radius:18px;padding:14px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="width:44px;height:44px;border-radius:12px;background:#FFC93C;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">蛋</span>
+      <div style="flex:1"><div style="font-size:15px;font-weight:700">新装了「蛋仔派对」</div><div style="font-size:13px;color:#9A3412">今天 17:02 · 游戏 · 还没设置</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px">
+      <button style="height:40px;border-radius:10px;border:0;background:#FDECEA;color:#B42318;font:700 14px 'Noto Sans SC',sans-serif">禁止</button>
+      <button style="height:40px;border-radius:10px;border:0;background:#FFFFFF;color:#15192B;font:700 14px 'Noto Sans SC',sans-serif">计入时长</button>
+      <button style="height:40px;border-radius:10px;border:0;background:#FFFFFF;color:#15192B;font:700 14px 'Noto Sans SC',sans-serif">单独限额</button>
+    </div>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:0 16px">
+    <sc-for list="{{apps}}" as="a" hint-placeholder-count="9">
+      <button style="width:100%;display:flex;align-items:center;gap:12px;height:66px;border:0;border-bottom:1px solid #EEF0F4;background:transparent;padding:0;font-family:'Noto Sans SC',sans-serif;color:#15192B;text-align:left">
+        <span style="width:42px;height:42px;border-radius:11px;background:{{a.c}};color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;flex:none">{{a.i}}</span>
+        <span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:700">{{a.n}}</span><span style="display:block;font-size:12px;color:#5B6275">{{a.u}}</span></span>
+        <span style="height:30px;padding:0 10px;border-radius:999px;background:{{a.sb}};color:{{a.sf}};font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap">{{a.s}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="padding:12px 24px;font-size:12px;color:#5B6275;line-height:1.6">电话、短信、紧急求助始终可用，不能被禁止。</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = {
+      ban: { s: '禁止', sb: '#FDECEA', sf: '#B42318' },
+      free: { s: '不限时', sb: '#E7F6EE', sf: '#0B7A43' },
+      count: { s: '计入时长', sb: '#EEF0F4', sf: '#15192B' },
+      cap: { s: '每天 20 分', sb: '#FFF4DB', sf: '#95560A' }
+    };
+    const A = [
+      ['哔哩哔哩', '哔', '#4A9FE8', '今天 38 分钟 · 视频', 'count'],
+      ['抖音', '抖', '#15192B', '今天 20 分钟 · 已到上限', 'cap'],
+      ['王者荣耀', '王', '#C2410C', '今天拦下 1 次 · 游戏', 'ban'],
+      ['和平精英', '和', '#7C5A2E', '本周拦下 3 次 · 游戏', 'ban'],
+      ['微信', '微', '#12A150', '今天 12 分钟 · 社交', 'count'],
+      ['作业帮', '作', '#2556D9', '今天 25 分钟 · 学习', 'free'],
+      ['学而思', '学', '#E5484D', '今天 0 分钟 · 学习', 'free'],
+      ['快手', '快', '#E8590C', '今天 0 分钟 · 视频', 'count'],
+      ['计算器', '计', '#5B6275', '系统工具', 'free']
+    ];
+    const sel = (on) => on ? { bg: '#15192B', fg: '#FFFFFF' } : { bg: '#FFFFFF', fg: '#15192B' };
+    return {
+      tabs: ['全部 23', '禁止 3', '不限时 5', '计入时长 14', '限额 1'].map((t, i) => ({ t, ...sel(i === 0) })),
+      apps: A.map(([n, i, c, u, k]) => ({ n, i, c, u, ...S[k] }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 申请加时</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+input::placeholder{color:#8A90A2}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;position:relative;overflow:hidden">
+  <div aria-hidden="true" style="padding:40px 18px 0;display:flex;flex-direction:column;gap:12px">
+    <div style="height:44px;width:180px;border-radius:999px;background:#D7E3FF"></div>
+    <div style="height:300px;border-radius:32px;background:#FFFFFF"></div>
+  </div>
+  <a href="k04-home.dc.html" aria-label="关闭" style="position:absolute;inset:0;background:rgba(21,25,43,.5)"></a>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#FFFFFF;border-radius:32px 32px 0 0;padding:12px 20px 30px">
+    <div style="width:40px;height:5px;border-radius:3px;background:#D5D9E2;margin:0 auto"></div>
+    <div style="font-size:24px;font-weight:900;margin-top:18px">想多玩一会儿？</div>
+    <div style="font-size:15px;color:#5B6275;margin-top:4px">妈妈同意后马上就能用</div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px">
+      <sc-for list="{{mins}}" as="m" hint-placeholder-count="3">
+        <button style="height:70px;border-radius:18px;border:{{m.b}};background:{{m.bg}};font-family:Outfit,'Noto Sans SC',sans-serif;color:#15192B;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <span style="font-size:28px;font-weight:800;line-height:1.1">{{m.v}}</span><span style="font-size:13px">分钟</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:16px;font-weight:700;margin-top:20px">为什么呢</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+      <sc-for list="{{why}}" as="w" hint-placeholder-count="4">
+        <button style="height:38px;padding:0 14px;border-radius:999px;border:{{w.b}};background:{{w.bg}};font:500 15px 'Noto Sans SC',sans-serif;color:#15192B">{{w.t}}</button>
+      </sc-for>
+    </div>
+    <input type="text" placeholder="也可以自己写一句…" aria-label="自己写理由" style="margin-top:12px;width:100%;box-sizing:border-box;height:48px;border-radius:14px;border:0;background:#F5F6F8;padding:0 14px;font:400 15px 'Noto Sans SC',sans-serif;color:#15192B;outline:none">
+
+    <a href="k04-home.dc.html" style="margin-top:20px;height:62px;border-radius:20px;background:#FF6A1F;box-shadow:0 4px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900">发给妈妈</a>
+    <a href="k08-quiz.dc.html" style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:15px;font-weight:700;color:#C2410C">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>不想等？闯一关马上 +10 分钟
+    </a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      mins: [15, 30, 60].map((v) => ({ v, bg: v === 30 ? '#FFF1E6' : '#F5F6F8', b: v === 30 ? '2.5px solid #FF6A1F' : '2.5px solid transparent' })),
+      why: ['作业写完了', '想看完这一集', '和同学约好了', '今天表现很好'].map((t, i) => ({ t, bg: i === 0 ? '#FFF1E6' : '#FFFFFF', b: i === 0 ? '1.5px solid #FF6A1F' : '1.5px solid #D5D9E2' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

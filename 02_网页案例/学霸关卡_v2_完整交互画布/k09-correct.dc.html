@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 答对</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:44px 18px 0;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#15192B" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+    <div style="flex:1;display:flex;gap:6px">
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#FFFFFF"></span>
+    </div>
+    <span class="n" style="height:32px;padding:0 10px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:14px;font-weight:700;display:flex;align-items:center;flex:none">+10 分</span>
+  </div>
+
+  <div style="margin-top:22px;display:flex;align-items:center;gap:8px">
+    <span style="height:28px;padding:0 12px;border-radius:999px;background:#FFFFFF;color:#2556D9;font-size:13px;font-weight:700;display:flex;align-items:center">数学 · 退位减法</span>
+    <span class="n" style="font-size:14px;color:#3D4560">第 2 题 / 共 3 题</span>
+  </div>
+
+  <div style="margin-top:14px;background:#FFFFFF;border-radius:32px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div style="font-size:16px;color:#5B6275">算一算</div>
+    <div class="n" style="font-size:64px;font-weight:800;margin-top:6px;letter-spacing:1px">63 − 28 = <span style="color:#0B7A43">35</span></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px">
+    <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+      <div style="height:100px;box-sizing:border-box;border-radius:24px;border:2.5px solid {{o.bd}};box-shadow:0 5px 0 {{o.sh}};background:{{o.bg}};color:{{o.fg}};position:relative;font-family:Outfit,'Noto Sans SC',sans-serif;display:flex;align-items:center;justify-content:center;opacity:{{o.op}}">
+        <span style="position:absolute;left:14px;top:10px;font-size:14px;font-weight:700">{{o.k}}</span>
+        <span style="font-size:40px;font-weight:800">{{o.v}}</span>
+        <sc-if value="{{o.ok}}" hint-placeholder-val="{{false}}"><span style="position:absolute;right:-6px;top:-8px;width:36px;height:36px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(21,25,43,.2)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#12A150" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#E7F6EE;border-radius:32px 32px 0 0;padding:22px 20px 32px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="width:52px;height:52px;border-radius:50%;background:#12A150;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+      <div style="flex:1">
+        <div style="font-size:26px;font-weight:900;color:#0B5C33">答对了！</div>
+        <div style="font-size:15px;color:#0B5C33;display:flex;align-items:center;gap:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FF6A1F" aria-hidden="true"><path d="M12 22c4 0 7-2.7 7-6.5 0-3.6-2.5-5.6-4-8.5-1 2-2 3-3.5 3.5C12 7 11 4.5 9 2c0 4-4 6.5-4 12 0 4.5 3 8 7 8z"/></svg>已经连对 5 题</div>
+      </div>
+    </div>
+    <a href="k11-speak.dc.html" style="margin-top:18px;height:60px;border-radius:20px;background:#12A150;box-shadow:0 4px 0 #0B7A43;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900">下一题</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { opts: [['A', '45'], ['B', '35'], ['C', '25'], ['D', '41']].map(([k, v]) => {
+      const ok = v === '35';
+      return ok
+        ? { k, v, ok, bd: '#12A150', sh: '#0B7A43', bg: '#12A150', fg: '#FFFFFF', op: 1 }
+        : { k, v, ok, bd: '#D5D9E2', sh: '#D5D9E2', bg: '#FFFFFF', fg: '#15192B', op: 0.45 };
+    }) };
+  }
+}
+</script>
+</body>
+</html>

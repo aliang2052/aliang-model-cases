@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>电视端 首页</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div style="width:1280px;height:720px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:48px 72px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:16px">
+    <svg width="48" height="48" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#15192B"/><path d="M9 25V15a7 7 0 0 1 14 0v10" stroke="#FF6A1F" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M12.6 18.6l2.4 2.4 4.4-4.8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span style="font-size:30px;font-weight:900">学霸关卡</span>
+    <span style="flex:1"></span>
+    <span style="font-size:22px;color:#3D4560">小宇 · 客厅电视</span>
+  </div>
+
+  <div style="flex:1;display:flex;align-items:center;gap:64px">
+    <div style="width:380px;height:380px;background:#FFFFFF;border-radius:48px;display:flex;align-items:center;justify-content:center;position:relative;flex:none">
+      <svg width="300" height="300" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="84" stroke="#EEF0F4" stroke-width="18" fill="none"/><circle cx="100" cy="100" r="84" stroke="#FF6A1F" stroke-width="18" fill="none" stroke-linecap="round" stroke-dasharray="211 527.8" transform="rotate(-90 100 100)"/></svg>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <span style="font-size:24px;color:#5B6275">今天还能看</span>
+        <span class="n" style="font-size:110px;font-weight:800;line-height:1">48</span>
+        <span style="font-size:26px;font-weight:700">分钟</span>
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+      <div style="height:132px;border-radius:36px;background:#FF6A1F;box-shadow:0 0 0 6px #FFFFFF,0 0 0 12px #15192B,0 18px 40px rgba(21,25,43,.25);display:flex;align-items:center;justify-content:center;gap:20px;transform:scale(1.03)">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="#15192B" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+        <span style="font-size:44px;font-weight:900">闯一关</span>
+        <span class="n" style="height:52px;padding:0 18px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:28px;font-weight:700;display:flex;align-items:center">+10 分钟</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+        <div style="height:120px;border-radius:32px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:16px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#FF6A1F" aria-hidden="true"><path d="M12 22c4 0 7-2.7 7-6.5 0-3.6-2.5-5.6-4-8.5-1 2-2 3-3.5 3.5C12 7 11 4.5 9 2c0 4-4 6.5-4 12 0 4.5 3 8 7 8z"/></svg>
+          <span><span class="n" style="display:block;font-size:40px;font-weight:800;line-height:1.1">5 天</span><span style="font-size:20px;color:#5B6275">连续闯关</span></span>
+        </div>
+        <div style="height:120px;border-radius:32px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:16px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#15192B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
+          <span><span style="display:block;font-size:32px;font-weight:900;line-height:1.2">申请加时</span><span style="font-size:20px;color:#5B6275">发给爸爸妈妈</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:20px;color:#3D4560;text-align:center">遥控器：方向键选择 · 确认键进入</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

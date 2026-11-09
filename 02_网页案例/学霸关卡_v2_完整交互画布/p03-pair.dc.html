@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 配对与守护检查</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;display:flex;flex-direction:column">
+  <div style="height:56px;display:flex;align-items:center;padding:0 8px;margin-top:24px">
+    <a href="p02-add-child.dc.html" aria-label="返回" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <div style="flex:1"></div>
+    <span class="n" style="font-size:14px;color:#5B6275;padding-right:16px">2 / 3</span>
+  </div>
+  <div style="padding:8px 20px 0">
+    <div style="display:flex;gap:6px"><span style="flex:1;height:4px;border-radius:2px;background:#15192B"></span><span style="flex:1;height:4px;border-radius:2px;background:#15192B"></span><span style="flex:1;height:4px;border-radius:2px;background:#E4E7EE"></span></div>
+    <div style="font-size:26px;font-weight:900;margin-top:20px">连接小宇的设备</div>
+    <div style="font-size:14px;color:#5B6275;margin-top:6px;line-height:1.6">在孩子的手机或平板上打开“学霸关卡·孩子端”，扫下面的码。</div>
+  </div>
+
+  <div style="margin:18px 20px 0;background:#FFFFFF;border-radius:20px;padding:18px;display:flex;gap:18px;align-items:center;position:relative">
+    <div style="width:120px;height:120px;display:grid;grid-template-columns:repeat(21,minmax(0,1fr));opacity:.35">
+      <sc-for list="{{qr}}" as="c" hint-placeholder-count="441"><span style="background:{{c}}"></span></sc-for>
+    </div>
+    <div style="flex:1">
+      <div style="font-size:13px;color:#5B6275">或输入配对码</div>
+      <div class="n" style="font-size:30px;font-weight:800;letter-spacing:3px;margin-top:2px;color:#8A90A2">482 917</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;height:28px;padding:0 10px;border-radius:999px;background:#E7F6EE;color:#0B7A43;font-size:13px;font-weight:700">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>已扫码连接
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:14px 20px 0;background:#FFFFFF;border-radius:20px;padding:18px 18px 8px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:17px;font-weight:700">守护检查</div>
+      <div class="n" style="font-size:15px;font-weight:700">4 / 6</div>
+    </div>
+    <div style="font-size:13px;color:#5B6275;margin-top:4px">Redmi Pad SE · 孩子端正在一步步引导，这里实时更新</div>
+    <div style="margin-top:8px">
+      <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+        <div style="display:flex;align-items:center;gap:12px;height:46px;border-top:1px solid #EEF0F4">
+          <span style="width:24px;height:24px;border-radius:50%;background:{{c.dotBg}};display:flex;align-items:center;justify-content:center;flex:none">
+            <sc-if value="{{c.done}}" hint-placeholder-val="{{true}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></sc-if>
+          </span>
+          <span style="flex:1;font-size:15px;font-weight:{{c.weight}}">{{c.t}}</span>
+          <span style="font-size:13px;color:{{c.stateFg}};font-weight:700">{{c.state}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex:1"></div>
+  <div style="padding:14px 20px 34px;display:flex;flex-direction:column;gap:10px">
+    <a href="p04-template.dc.html" style="height:56px;border-radius:14px;background:#15192B;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700">守护就绪后自动进入下一步</a>
+    <div style="text-align:center;font-size:13px;color:#5B6275">卡住了？<a href="#">查看 vivo / OPPO / 华为 设置图解</a></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const N = 21, cells = [];
+    const finder = (r, c, R, C) => { const y = r - R, x = c - C; if (y < 0 || x < 0 || y > 6 || x > 6) return null; return (y === 0 || y === 6 || x === 0 || x === 6 || (y >= 2 && y <= 4 && x >= 2 && x <= 4)); };
+    let s = 7;
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+      let f = finder(r, c, 0, 0); if (f === null) f = finder(r, c, 0, 14); if (f === null) f = finder(r, c, 14, 0);
+      s = (s * 9301 + 49297) % 233280;
+      const on = f === null ? (s / 233280) > 0.52 : f;
+      cells.push(on ? '#15192B' : 'transparent');
+    }
+    const st = {
+      done: { dotBg: '#12A150', state: '已完成', stateFg: '#0B7A43', weight: 400, done: true },
+      doing: { dotBg: '#F5A524', state: '孩子正在设置', stateFg: '#95560A', weight: 700, done: false },
+      todo: { dotBg: '#E4E7EE', state: '待完成', stateFg: '#5B6275', weight: 400, done: false }
+    };
+    const list = [['屏幕监控（无障碍）','done'],['使用时长统计','done'],['通知权限','done'],['后台不被清理','done'],['开机自启动','doing'],['防止卸载','todo']];
+    return { qr: cells, checks: list.map(([t, k]) => ({ t, ...st[k] })) };
+  }
+}
+</script>
+</body>
+</html>

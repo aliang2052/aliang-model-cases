@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 学习内容</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:1000px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B">
+  <div style="height:56px;display:flex;align-items:center;padding:0 8px;margin-top:24px">
+    <a href="p09-rules.dc.html" aria-label="返回" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <span style="font-size:18px;font-weight:700;margin-left:4px">学习内容</span>
+  </div>
+
+  <div style="margin:4px 16px 0;background:#FFFFFF;border-radius:20px;padding:0 18px">
+    <sc-for list="{{base}}" as="r" hint-placeholder-count="3">
+      <button style="width:100%;display:flex;align-items:center;height:54px;border:0;border-bottom:1px solid #EEF0F4;background:transparent;padding:0;font-family:'Noto Sans SC',sans-serif;color:#15192B">
+        <span style="flex:1;text-align:left;font-size:15px">{{r.k}}</span>
+        <span style="font-size:15px;font-weight:700">{{r.v}}</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA1B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </sc-for>
+    <div style="padding:14px 0">
+      <div style="display:flex;align-items:center">
+        <span style="flex:1;font-size:15px">跟着学校进度走</span>
+        <span style="width:52px;height:32px;border-radius:999px;background:#15192B;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+      </div>
+      <div style="margin-top:10px;background:#F5F6F8;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.6">现在出题范围：<b>数学 第 4 单元 万以内的加法和减法（二）</b>，并混入前面单元的复习题</div>
+    </div>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:16px 18px 6px">
+    <div style="font-size:17px;font-weight:700">学科搭配</div>
+    <div style="font-size:13px;color:#5B6275;margin-top:2px">比重越高，出现得越多</div>
+    <sc-for list="{{subs}}" as="s" hint-placeholder-count="4">
+      <div style="display:flex;align-items:center;gap:10px;height:58px;border-bottom:1px solid #EEF0F4">
+        <span style="flex:1"><span style="display:block;font-size:15px;font-weight:700;color:{{s.fg}}">{{s.n}}</span><span style="display:block;font-size:12px;color:#5B6275">{{s.d}}</span></span>
+        <span style="display:flex;background:#F5F6F8;border-radius:10px;padding:3px">
+          <sc-for list="{{s.w}}" as="w" hint-placeholder-count="3"><span style="width:36px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:{{w.bg}};color:{{w.fg}}">{{w.t}}</span></sc-for>
+        </span>
+      </div>
+    </sc-for>
+    <div style="display:flex;align-items:center;height:56px">
+      <span style="flex:1"><span style="display:block;font-size:15px">英语跟读题</span><span style="display:block;font-size:12px;color:#5B6275">孩子读出单词，自动打分</span></span>
+      <span style="width:52px;height:32px;border-radius:999px;background:#15192B;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+    </div>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:16px 18px">
+    <div style="font-size:17px;font-weight:700">难度</div>
+    <div style="display:flex;background:#F5F6F8;border-radius:12px;padding:4px;margin-top:12px">
+      <button style="flex:1;height:40px;border:0;border-radius:9px;background:transparent;color:#5B6275;font:500 14px 'Noto Sans SC',sans-serif">打基础</button>
+      <button style="flex:1;height:40px;border:0;border-radius:9px;background:#15192B;color:#FFFFFF;font:700 14px 'Noto Sans SC',sans-serif">跟上进度</button>
+      <button style="flex:1;height:40px;border:0;border-radius:9px;background:transparent;color:#5B6275;font:500 14px 'Noto Sans SC',sans-serif">拔高</button>
+    </div>
+    <div style="display:flex;align-items:center;margin-top:16px">
+      <span style="flex:1"><span style="display:block;font-size:15px">错题优先复习</span><span style="display:block;font-size:12px;color:#5B6275">每关最多混入 1 道错题，连对 2 次就移出</span></span>
+      <span style="width:52px;height:32px;border-radius:999px;background:#15192B;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ws = (k) => ['少', '中', '多'].map((t) => ({ t, bg: t === k ? '#15192B' : 'transparent', fg: t === k ? '#FFFFFF' : '#5B6275' }));
+    return {
+      base: [{ k: '年级', v: '三年级' }, { k: '学期', v: '上学期' }, { k: '教材版本', v: '人教版' }],
+      subs: [
+        { n: '数学', d: '计算题无限生成 + 应用题', w: ws('多'), fg: '#15192B' },
+        { n: '语文', d: '字词、古诗、阅读小题', w: ws('中'), fg: '#15192B' },
+        { n: '英语', d: '单词、句型、跟读', w: ws('中'), fg: '#15192B' },
+        { n: '科学', d: '三年级起开放', w: ws('少'), fg: '#15192B' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 英语跟读</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:44px 18px 30px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="k04-home.dc.html" aria-label="退出闯关" style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#15192B;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+    <div style="flex:1;display:flex;gap:6px">
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#FF6A1F"></span>
+    </div>
+    <span class="n" style="height:32px;padding:0 10px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:14px;font-weight:700;display:flex;align-items:center;flex:none">+10 分</span>
+  </div>
+
+  <div style="margin-top:22px;display:flex;align-items:center;gap:8px">
+    <span style="height:28px;padding:0 12px;border-radius:999px;background:#FFFFFF;color:#2556D9;font-size:13px;font-weight:700;display:flex;align-items:center">英语 · 跟我读</span>
+    <span class="n" style="font-size:14px;color:#3D4560">第 3 题 / 共 3 题</span>
+  </div>
+
+  <div style="margin-top:14px;background:#FFFFFF;border-radius:32px;padding:28px 20px;display:flex;flex-direction:column;align-items:center">
+    <span style="width:72px;height:72px;border-radius:22px;background:#8E5BD8"></span>
+    <div class="n" style="font-size:60px;font-weight:800;margin-top:14px;line-height:1">purple</div>
+    <div class="n" style="font-size:18px;color:#5B6275;margin-top:8px">/ˈpɜːpl/ · 紫色</div>
+    <button style="margin-top:16px;height:44px;padding:0 18px;border-radius:999px;border:0;background:#EAF0FF;color:#15192B;font:700 15px 'Noto Sans SC',sans-serif;display:flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>先听一遍</button>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+    <div aria-hidden="true" style="display:flex;align-items:center;gap:5px;height:48px">
+      <sc-for list="{{wave}}" as="w" hint-placeholder-count="15"><span style="width:6px;border-radius:3px;background:#FF6A1F;height:{{w}}"></span></sc-for>
+    </div>
+    <a href="k12-result.dc.html" aria-label="按住说话" style="width:120px;height:120px;border-radius:50%;background:#FF6A1F;box-shadow:0 6px 0 #C2410C,0 0 0 14px rgba(255,106,31,.18);display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></a>
+    <div style="font-size:16px;font-weight:700">正在听你读…松开就打分</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { wave: [10, 18, 30, 22, 40, 28, 46, 34, 44, 26, 36, 20, 28, 14, 10].map((h) => h + 'px') };
+  }
+}
+</script>
+</body>
+</html>

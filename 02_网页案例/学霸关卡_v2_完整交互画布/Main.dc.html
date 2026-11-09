@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>学霸关卡 设计规范</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:1440px;height:1640px;box-sizing:border-box;padding:72px 80px;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;display:flex;flex-direction:column;gap:48px">
+
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:20px">
+      <svg width="72" height="72" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#15192B"/><path d="M9 25V15a7 7 0 0 1 14 0v10" stroke="#FF6A1F" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M12.6 18.6l2.4 2.4 4.4-4.8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <div style="font-size:44px;font-weight:900;letter-spacing:1px">学霸关卡 · 设计规范</div>
+        <div style="font-size:18px;color:#5B6275;margin-top:6px">v2 可售版 · 家长端 / 孩子端 / 电视端共用一套视觉语言</div>
+      </div>
+    </div>
+    <div style="font-size:15px;color:#5B6275;text-align:right;line-height:1.7">品牌图形：一道“关卡拱门” + 通过的对勾<br>寓意：闯过去，就是你的时间</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+    <div style="background:#FFFFFF;border-radius:24px;padding:28px;border:1px solid #E4E7EE">
+      <div style="font-size:14px;font-weight:700;color:#5B6275">家长端原则</div>
+      <div style="font-size:26px;font-weight:900;margin-top:8px">3 秒看懂，一步操作</div>
+      <div style="font-size:15px;color:#5B6275;margin-top:10px;line-height:1.7">首页只回答“孩子现在怎样、要不要管”。所有远程操作一次点击，2 秒内给出“已生效”的反馈。浅色、冷静、像一个可靠的工具。</div>
+    </div>
+    <div style="background:#FFFFFF;border-radius:24px;padding:28px;border:1px solid #E4E7EE">
+      <div style="font-size:14px;font-weight:700;color:#5B6275">孩子端原则</div>
+      <div style="font-size:26px;font-weight:900;margin-top:8px">公平，而且有奔头</div>
+      <div style="font-size:15px;color:#5B6275;margin-top:10px;line-height:1.7">剩余时间永远看得见，赚时间的路永远在眼前。明亮、有能量，但不幼稚——一年级到初三都愿意用。</div>
+    </div>
+    <div style="background:#FFFFFF;border-radius:24px;padding:28px;border:1px solid #E4E7EE">
+      <div style="font-size:14px;font-weight:700;color:#5B6275">共同原则</div>
+      <div style="font-size:26px;font-weight:900;margin-top:8px">不吓人，不羞辱</div>
+      <div style="font-size:15px;color:#5B6275;margin-top:10px;line-height:1.7">锁定页说清原因和恢复时间；答错只给解析不给惩罚感。透明：孩子随时能看到上报了什么。</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:48px">
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div style="font-size:22px;font-weight:900">色彩</div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+        <sc-for list="{{colors}}" as="c" hint-placeholder-count="12">
+          <div style="background:#FFFFFF;border-radius:18px;overflow:hidden;border:1px solid #E4E7EE">
+            <div style="height:72px;background:{{c.hex}};border-bottom:1px solid #E4E7EE"></div>
+            <div style="padding:12px 14px">
+              <div style="font-size:15px;font-weight:700">{{c.name}}</div>
+              <div class="n" style="font-size:13px;color:#5B6275;margin-top:2px">{{c.hex}}</div>
+              <div style="font-size:12px;color:#5B6275;margin-top:4px;line-height:1.5">{{c.use}}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="width:460px;display:flex;flex-direction:column;gap:20px">
+      <div style="font-size:22px;font-weight:900">字体</div>
+      <div style="background:#FFFFFF;border-radius:24px;padding:28px;border:1px solid #E4E7EE;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:baseline;gap:16px"><span class="n" style="font-size:56px;font-weight:800;line-height:1">1:24</span><span style="font-size:13px;color:#5B6275">数字 Outfit 800 · 时长/分数</span></div>
+        <div style="display:flex;align-items:baseline;gap:16px"><span style="font-size:28px;font-weight:900">页面标题</span><span style="font-size:13px;color:#5B6275">思源黑体 900 · 28</span></div>
+        <div style="display:flex;align-items:baseline;gap:16px"><span style="font-size:20px;font-weight:700">卡片标题</span><span style="font-size:13px;color:#5B6275">700 · 20</span></div>
+        <div style="display:flex;align-items:baseline;gap:16px"><span style="font-size:16px">正文与列表项</span><span style="font-size:13px;color:#5B6275">400 · 16 / 行高 1.6</span></div>
+        <div style="display:flex;align-items:baseline;gap:16px"><span style="font-size:13px;color:#5B6275">辅助说明</span><span style="font-size:13px;color:#5B6275">400 · 13 · #5B6275</span></div>
+        <div style="font-size:13px;color:#5B6275;line-height:1.7;border-top:1px solid #E4E7EE;padding-top:14px">孩子端题目字号 ≥ 26，选项 ≥ 20；家长端正文 ≥ 15。所有文字对比度 ≥ 4.5:1，橙色不用作小字。</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:48px">
+    <div style="flex:1;display:flex;flex-direction:column;gap:20px">
+      <div style="font-size:22px;font-weight:900">组件</div>
+      <div style="background:#FFFFFF;border-radius:24px;padding:32px;border:1px solid #E4E7EE;display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <button style="height:52px;padding:0 28px;border:0;border-radius:14px;background:#15192B;color:#FFFFFF;font:700 16px 'Noto Sans SC',sans-serif">家长主按钮</button>
+          <button style="height:56px;padding:0 28px;border:0;border-radius:18px;background:#FF6A1F;color:#15192B;font:900 18px 'Noto Sans SC',sans-serif;box-shadow:0 4px 0 #C2410C">孩子主按钮 · 闯关</button>
+          <button style="height:52px;padding:0 24px;border:1.5px solid #D5D9E2;border-radius:14px;background:#FFFFFF;color:#15192B;font:700 16px 'Noto Sans SC',sans-serif">次按钮</button>
+          <button style="height:52px;padding:0 24px;border:0;border-radius:14px;background:#FDECEA;color:#B42318;font:700 16px 'Noto Sans SC',sans-serif">危险操作</button>
+          <button style="height:52px;padding:0 24px;border:0;border-radius:14px;background:#E7F6EE;color:#0B7A43;font:700 16px 'Noto Sans SC',sans-serif;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>已生效</button>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#E7F6EE;color:#0B7A43;font-size:14px;font-weight:700"><span style="width:8px;height:8px;border-radius:50%;background:#12A150"></span>在线</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#EEF0F4;color:#5B6275;font-size:14px;font-weight:700"><span style="width:8px;height:8px;border-radius:50%;background:#9AA1B2"></span>离线 12 分钟</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#E7F6EE;color:#0B7A43;font-size:14px;font-weight:700">守护完整 6/6</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#FDECEA;color:#B42318;font-size:14px;font-weight:700">守护异常</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;background:#FFF1E6;color:#9A3412;font-size:14px;font-weight:700">待处理 1</span>
+          <span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#EAF0FF;color:#2556D9;font-size:14px;font-weight:700">数学 · 三上</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center">
+          <div style="display:flex;background:#EEF0F4;border-radius:12px;padding:4px">
+            <span style="height:36px;padding:0 18px;border-radius:9px;background:#FFFFFF;display:flex;align-items:center;font-size:15px;font-weight:700;box-shadow:0 1px 3px rgba(21,25,43,.12)">上学日</span>
+            <span style="height:36px;padding:0 18px;display:flex;align-items:center;font-size:15px;color:#5B6275">周末与节假日</span>
+          </div>
+          <span style="width:52px;height:32px;border-radius:999px;background:#15192B;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+          <span style="width:52px;height:32px;border-radius:999px;background:#D5D9E2;position:relative;display:inline-block"><span style="position:absolute;left:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+          <div style="flex:1;height:10px;border-radius:999px;background:#EEF0F4;overflow:hidden"><div style="width:70%;height:10px;border-radius:999px;background:#15192B"></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="width:460px;display:flex;flex-direction:column;gap:20px">
+      <div style="font-size:22px;font-weight:900">尺寸与图标</div>
+      <div style="background:#FFFFFF;border-radius:24px;padding:28px;border:1px solid #E4E7EE;display:flex;flex-direction:column;gap:18px;font-size:15px;line-height:1.6">
+        <div>间距 8 的倍数；页面左右边距 20</div>
+        <div>圆角：卡片 20 · 按钮 14 · 孩子端按钮 18 · 底部弹层 28</div>
+        <div>点击区域 ≥ 44；孩子端选项高 ≥ 64</div>
+        <div style="display:flex;gap:18px;color:#15192B;border-top:1px solid #E4E7EE;padding-top:16px">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M6 16v-5M11 16V6M16 16v-8"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13M12 8C10 4 6 4 6 6.5S9 8 12 8zM12 8c2-4 6-4 6-1.5S15 8 12 8z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+        </div>
+        <div style="font-size:13px;color:#5B6275">线性图标 2px 描边、圆角端点，24 网格；不使用 emoji。</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      colors: [
+        { name: '墨蓝', hex: '#15192B', use: '主文字、家长端主按钮、进度' },
+        { name: '关卡橙', hex: '#FF6A1F', use: '品牌色、孩子端主按钮（墨蓝字）' },
+        { name: '深橙', hex: '#C2410C', use: '橙色系文字、按钮投影' },
+        { name: '天空', hex: '#EAF0FF', use: '孩子端背景、学科标签底' },
+        { name: '次文字', hex: '#5B6275', use: '说明文字（白底 6:1）' },
+        { name: '分隔线', hex: '#E4E7EE', use: '描边、分隔' },
+        { name: '家长底色', hex: '#F5F6F8', use: '家长端页面背景' },
+        { name: '卡片', hex: '#FFFFFF', use: '卡片、弹层' },
+        { name: '通过绿', hex: '#12A150', use: '在线、答对；文字用 #0B7A43' },
+        { name: '提醒琥珀', hex: '#F5A524', use: '快用完、待处理；文字用 #95560A' },
+        { name: '警示红', hex: '#D92D20', use: '守护异常、答错；文字用 #B42318' },
+        { name: '信息蓝', hex: '#2556D9', use: '链接、学科标签文字' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

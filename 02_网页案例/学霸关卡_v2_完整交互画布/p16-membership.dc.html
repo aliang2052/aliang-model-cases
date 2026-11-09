@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 会员</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:1060px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B">
+  <div style="background:#15192B;color:#FFFFFF;padding:24px 20px 26px;border-radius:0 0 28px 28px">
+    <div style="height:56px;display:flex;align-items:center;margin-left:-12px">
+      <a href="p15-me.dc.html" aria-label="返回" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#FFFFFF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+    </div>
+    <div style="font-size:14px;color:#FF8A4C;font-weight:700">学霸关卡会员</div>
+    <div style="font-size:26px;font-weight:900;margin-top:6px;line-height:1.35">管得住，也不用天天吵</div>
+    <div style="font-size:14px;color:#C9CDD8;margin-top:8px">试用还剩 5 天，到期自动回到免费版，不会扣钱</div>
+  </div>
+
+  <div style="margin:16px 16px 0;display:flex;background:#E9ECF1;border-radius:12px;padding:4px">
+    <button style="flex:1;height:40px;border:0;border-radius:9px;background:#FFFFFF;font:700 15px 'Noto Sans SC',sans-serif;color:#15192B;box-shadow:0 1px 3px rgba(21,25,43,.12)">按年 · 更划算</button>
+    <button style="flex:1;height:40px;border:0;border-radius:9px;background:transparent;font:500 15px 'Noto Sans SC',sans-serif;color:#5B6275">按月</button>
+  </div>
+
+  <div style="padding:12px 16px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{plans}}" as="p" hint-placeholder-count="3">
+      <button style="width:100%;text-align:left;background:#FFFFFF;border-radius:18px;padding:16px;border:{{p.border}};font-family:'Noto Sans SC',sans-serif;color:#15192B;display:flex;align-items:center;gap:12px">
+        <span style="flex:1"><span style="display:block;font-size:17px;font-weight:900">{{p.n}}</span><span style="display:block;font-size:13px;color:#5B6275;margin-top:3px">{{p.d}}</span></span>
+        <span style="text-align:right"><span class="n" style="display:block;font-size:24px;font-weight:800">{{p.price}}</span><span style="display:block;font-size:12px;color:#5B6275">{{p.unit}}</span></span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="margin:14px 16px 0;background:#FFFFFF;border-radius:20px;padding:16px">
+    <div style="display:grid;grid-template-columns:1fr 52px 52px;font-size:12px;color:#5B6275;font-weight:700;padding-bottom:8px;border-bottom:1px solid #EEF0F4">
+      <span>能做什么</span><span style="text-align:center">免费</span><span style="text-align:center">会员</span>
+    </div>
+    <sc-for list="{{feats}}" as="f" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:1fr 52px 52px;align-items:center;min-height:42px;border-bottom:1px solid #EEF0F4;font-size:14px">
+        <span>{{f.t}}</span>
+        <span style="text-align:center;color:{{f.ff}};font-weight:700">{{f.free}}</span>
+        <span style="text-align:center;color:#0B7A43;font-weight:700">{{f.vip}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="padding:18px 16px 0;display:flex;flex-direction:column;gap:10px">
+    <button style="height:56px;border-radius:14px;border:0;background:#15192B;color:#FFFFFF;font:700 17px 'Noto Sans SC',sans-serif">微信支付 ¥168 开通一年</button>
+    <button style="height:52px;border-radius:14px;border:1.5px solid #D5D9E2;background:#FFFFFF;color:#15192B;font:700 16px 'Noto Sans SC',sans-serif">用支付宝</button>
+    <div style="text-align:center;font-size:12px;color:#5B6275;line-height:1.6">不自动续费 · 7 天内不满意可申请退款</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const P = [
+      { n: '会员', d: '3 个孩子 · 5 台设备 · 全部管控与报告', price: '¥168', unit: '每年 · 合 ¥14/月' },
+      { n: '会员 + 位置', d: '会员全部 + 位置守护、到校到家提醒', price: '¥228', unit: '每年 · 合 ¥19/月' },
+      { n: '免费版', d: '1 个孩子 1 台设备 · 基础限时与闯关', price: '¥0', unit: '一直免费' }
+    ];
+    const F = [
+      ['每日限时 · 睡觉时间 · 闯关', '✓', '✓'],
+      ['数学题库', '✓', '✓'],
+      ['语文、英语、理化生题库', '—', '✓'],
+      ['加时申请 · 奖励时间', '—', '✓'],
+      ['应用管理（禁止 / 不限时 / 限额）', '—', '✓'],
+      ['完整报告 · 错题本 · 薄弱点', '3 天', '✓'],
+      ['家人一起管', '—', '✓']
+    ];
+    return {
+      plans: P.map((p, i) => ({ ...p, border: i === 0 ? '2px solid #15192B' : '2px solid transparent' })),
+      feats: F.map(([t, free, vip]) => ({ t, free, vip, ff: free === '—' ? '#5B6275' : '#0B7A43' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

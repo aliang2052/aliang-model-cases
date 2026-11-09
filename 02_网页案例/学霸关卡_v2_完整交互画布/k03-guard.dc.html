@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 守护设置向导</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:1060px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:64px 20px 34px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px">
+    <span style="font-size:28px;font-weight:900">打开守护</span>
+    <span class="n" style="font-size:18px;font-weight:700">4 / 6</span>
+  </div>
+  <div style="height:10px;border-radius:999px;background:#FFFFFF;margin:12px 4px 0;overflow:hidden"><div style="width:66%;height:10px;border-radius:999px;background:#15192B"></div></div>
+  <div style="font-size:14px;color:#3D4560;margin-top:10px;padding:0 4px">已识别：Redmi Pad SE · 澎湃 OS。可以请爸爸妈妈帮忙一起设置。</div>
+
+  <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+    <sc-for list="{{done}}" as="d" hint-placeholder-count="4">
+      <div style="height:52px;border-radius:16px;background:#FFFFFF;display:flex;align-items:center;gap:12px;padding:0 16px">
+        <span style="width:26px;height:26px;border-radius:50%;background:#12A150;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span style="font-size:15px;flex:1">{{d}}</span><span style="font-size:13px;color:#0B7A43;font-weight:700">已打开</span>
+      </div>
+    </sc-for>
+
+    <div style="border-radius:24px;background:#FFFFFF;padding:18px;border:2.5px solid #15192B">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="n" style="width:26px;height:26px;border-radius:50%;background:#15192B;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">5</span>
+        <span style="font-size:18px;font-weight:900">允许开机自启动</span>
+      </div>
+      <div style="font-size:14px;color:#5B6275;margin-top:6px;line-height:1.6">不然重启后守护会停掉，爸爸妈妈那边会收到提醒。</div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="3">
+          <div style="display:flex;gap:10px;font-size:15px;line-height:1.5"><span class="n" style="color:#C2410C;font-weight:800">{{s.i}}</span><span>{{s.t}}</span></div>
+        </sc-for>
+      </div>
+      <div aria-hidden="true" style="margin-top:14px;background:#F5F6F8;border-radius:16px;padding:12px">
+        <div style="font-size:12px;color:#5B6275;margin-bottom:8px">系统设置里会看到这样一行</div>
+        <div style="height:52px;border-radius:12px;background:#FFFFFF;display:flex;align-items:center;gap:10px;padding:0 12px;border:2px dashed #FF6A1F">
+          <svg width="28" height="28" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#15192B"/><path d="M9 25V15a7 7 0 0 1 14 0v10" stroke="#FF6A1F" stroke-width="3.2" fill="none" stroke-linecap="round"/></svg>
+          <span style="flex:1;font-size:15px;font-weight:700">学霸关卡</span>
+          <span style="width:46px;height:28px;border-radius:999px;background:#2556D9;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#FFFFFF"></span></span>
+        </div>
+      </div>
+      <a href="k04-home.dc.html" style="margin-top:16px;height:58px;border-radius:18px;background:#FF6A1F;box-shadow:0 4px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900">去打开</a>
+      <div style="font-size:13px;color:#5B6275;text-align:center;margin-top:10px">打开后回到这里，会自动打勾</div>
+    </div>
+
+    <div style="height:52px;border-radius:16px;background:rgba(255,255,255,.6);display:flex;align-items:center;gap:12px;padding:0 16px">
+      <span class="n" style="width:26px;height:26px;border-radius:50%;border:2px solid #9AA1B2;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5B6275;font-weight:700">6</span>
+      <span style="font-size:15px;color:#3D4560">防止被卸载</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      done: ['屏幕监控（无障碍）', '使用时长统计', '通知', '后台不被清理'],
+      steps: [
+        { i: '1', t: '点下面的「去打开」，会跳到「自启动管理」' },
+        { i: '2', t: '找到「学霸关卡」' },
+        { i: '3', t: '把开关打开（变成蓝色）' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 闯关作答</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:44px 18px 30px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="k04-home.dc.html" aria-label="退出闯关" style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#15192B;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+    <div style="flex:1;display:flex;gap:6px">
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#FF6A1F"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#FFFFFF"></span>
+    </div>
+    <span class="n" style="height:32px;padding:0 10px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:14px;font-weight:700;display:flex;align-items:center;flex:none">+10 分</span>
+  </div>
+
+  <div style="margin-top:22px;display:flex;align-items:center;gap:8px">
+    <span style="height:28px;padding:0 12px;border-radius:999px;background:#FFFFFF;color:#2556D9;font-size:13px;font-weight:700;display:flex;align-items:center">数学 · 退位减法</span>
+    <span class="n" style="font-size:14px;color:#3D4560">第 2 题 / 共 3 题</span>
+  </div>
+
+  <div style="margin-top:14px;background:#FFFFFF;border-radius:32px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div style="font-size:16px;color:#5B6275">算一算</div>
+    <div class="n" style="font-size:64px;font-weight:800;margin-top:6px;letter-spacing:1px">63 − 28 = ?</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px">
+    <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+      <a href="{{o.href}}" style="height:100px;box-sizing:border-box;border-radius:24px;border:2.5px solid #D5D9E2;box-shadow:0 5px 0 #D5D9E2;background:#FFFFFF;position:relative;font-family:Outfit,'Noto Sans SC',sans-serif;color:#15192B;display:flex;align-items:center;justify-content:center">
+        <span style="position:absolute;left:14px;top:10px;font-size:14px;font-weight:700;color:#5B6275">{{o.k}}</span>
+        <span style="font-size:40px;font-weight:800">{{o.v}}</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <div style="flex:1"></div>
+  <div style="text-align:center;font-size:15px;color:#3D4560">答对 3 题，就能多玩 <b>10 分钟</b></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { opts: [['A', '45'], ['B', '35'], ['C', '25'], ['D', '41']].map(([k, v]) => ({ k, v, href: v === '35' ? 'k09-correct.dc.html' : 'k10-wrong.dc.html' })) };
+  }
+}
+</script>
+</body>
+</html>

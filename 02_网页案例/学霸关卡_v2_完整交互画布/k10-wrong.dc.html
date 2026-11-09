@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 答错与解析</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:900px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:44px 18px 0;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <div style="display:flex;align-items:center;gap:12px">
+    <span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#15192B" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+    <div style="flex:1;display:flex;gap:6px">
+      <span style="flex:1;height:12px;border-radius:6px;background:#12A150"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#D92D20"></span>
+      <span style="flex:1;height:12px;border-radius:6px;background:#FFFFFF"></span>
+    </div>
+    <span class="n" style="height:32px;padding:0 10px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:14px;font-weight:700;display:flex;align-items:center;flex:none">+10 分</span>
+  </div>
+
+  <div style="margin-top:16px;background:#FFFFFF;border-radius:28px;height:120px;display:flex;align-items:center;justify-content:center">
+    <div class="n" style="font-size:48px;font-weight:800">63 − 28 = ?</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px">
+    <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+      <div style="height:72px;box-sizing:border-box;border-radius:20px;border:2.5px solid {{o.bd}};background:{{o.bg}};color:{{o.fg}};font-family:Outfit,'Noto Sans SC',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;opacity:{{o.op}}">
+        <span style="font-size:30px;font-weight:800">{{o.v}}</span><span style="font:700 13px 'Noto Sans SC',sans-serif">{{o.tag}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#FFFFFF;border-radius:32px 32px 0 0;padding:22px 20px 32px;box-shadow:0 -6px 24px rgba(21,25,43,.08)">
+    <div style="font-size:24px;font-weight:900">差一点！答案是 <span class="n" style="color:#0B7A43">35</span></div>
+    <div style="display:flex;gap:16px;margin-top:16px;align-items:center">
+      <div class="n" aria-label="竖式：63 减 28 等于 35" role="img" style="background:#F5F6F8;border-radius:16px;padding:12px 18px;font-size:28px;font-weight:700;line-height:1.25;text-align:right;flex:none">
+        <div><span style="font-size:14px;color:#C2410C;vertical-align:top">5</span>6<span style="position:relative">3<span style="position:absolute;left:-2px;top:-12px;font-size:13px;color:#C2410C">1</span></span></div>
+        <div>− 28</div>
+        <div style="border-top:2.5px solid #15192B;color:#0B7A43">35</div>
+      </div>
+      <div style="font-size:15px;line-height:1.7">
+        <div><b>个位：</b>3 不够减 8，向十位借 1，<span style="white-space:nowrap">13 − 8 = <b>5</b></span></div>
+        <div style="margin-top:4px"><b>十位：</b>6 被借走 1 剩 5，<span style="white-space:nowrap">5 − 2 = <b>3</b></span></div>
+      </div>
+    </div>
+    <div style="margin-top:14px;background:#FFF1E6;border-radius:12px;padding:10px 12px;font-size:14px;color:#9A3412">你选了 45：可能是忘记十位被借走了 1。这题放进错题本啦，过两天再考你。</div>
+    <a href="k11-speak.dc.html" style="margin-top:16px;height:60px;border-radius:20px;background:#FF6A1F;box-shadow:0 4px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900">我明白了</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = {
+      mine: { bd: '#D92D20', bg: '#FDECEA', fg: '#B42318', op: 1, tag: '你选的' },
+      right: { bd: '#12A150', bg: '#E7F6EE', fg: '#0B7A43', op: 1, tag: '正确' },
+      other: { bd: '#D5D9E2', bg: '#FFFFFF', fg: '#15192B', op: 0.45, tag: '' }
+    };
+    return { opts: [['45', 'mine'], ['35', 'right'], ['25', 'other'], ['41', 'other']].map(([v, k]) => ({ v, ...S[k] })) };
+  }
+}
+</script>
+</body>
+</html>

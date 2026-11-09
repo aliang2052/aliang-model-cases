@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 位置</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#E9EDE6;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0">
+    <div style="position:absolute;left:-40px;top:120px;width:220px;height:150px;background:#D3E6C8;border-radius:30px"></div>
+    <div style="position:absolute;right:-60px;top:300px;width:200px;height:120px;background:#CFE0F2;border-radius:60px"></div>
+    <div style="position:absolute;left:0;right:0;top:210px;height:14px;background:#FFFFFF"></div>
+    <div style="position:absolute;left:0;right:0;top:390px;height:10px;background:#FFFFFF"></div>
+    <div style="position:absolute;top:0;bottom:0;left:120px;width:12px;background:#FFFFFF"></div>
+    <div style="position:absolute;top:0;bottom:0;left:270px;width:9px;background:#FFFFFF"></div>
+    <div style="position:absolute;left:-50px;top:40px;width:560px;height:9px;background:#FFFFFF;transform:rotate(18deg)"></div>
+    <div style="position:absolute;left:150px;top:250px;width:100px;height:110px;background:#F0E6D2;border-radius:12px"></div>
+    <svg width="390" height="460" viewBox="0 0 390 460" style="position:absolute;left:0;top:0"><path d="M60 410 C 90 330, 126 300, 126 230 S 190 240, 200 300" stroke="#15192B" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" fill="none"/></svg>
+  </div>
+  <div style="position:absolute;left:178px;top:262px;font-size:12px;color:#5B6275;font-weight:700">家</div>
+  <div style="position:absolute;left:174px;top:282px;display:flex;flex-direction:column;align-items:center">
+    <span style="width:52px;height:52px;border-radius:50%;background:#CFE3FF;border:4px solid #FFFFFF;box-shadow:0 6px 16px rgba(21,25,43,.25);display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="10.5" cy="13" r="2" fill="#15192B"/><circle cx="19.5" cy="13" r="2" fill="#15192B"/><path d="M10 19c1.5 2 3 2.8 5 2.8s3.5-.8 5-2.8" stroke="#15192B" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>
+  </div>
+
+  <a href="p05-today.dc.html" aria-label="返回" style="position:absolute;left:16px;top:40px;width:44px;height:44px;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#15192B;box-shadow:0 2px 8px rgba(21,25,43,.15)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#FFFFFF;border-radius:28px 28px 0 0;padding:10px 20px 30px;box-shadow:0 -6px 24px rgba(21,25,43,.1)">
+    <div style="width:40px;height:5px;border-radius:3px;background:#D5D9E2;margin:0 auto"></div>
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-top:16px">
+      <div style="flex:1">
+        <div style="font-size:20px;font-weight:900">在家</div>
+        <div style="font-size:14px;color:#5B6275;margin-top:4px">西湖区 文三路 128 号附近 · 2 分钟前 · 误差约 20 米</div>
+      </div>
+      <button style="height:40px;padding:0 14px;border-radius:12px;border:0;background:#15192B;color:#FFFFFF;font:700 14px 'Noto Sans SC',sans-serif;display:flex;align-items:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>刷新</button>
+    </div>
+    <div style="font-size:15px;font-weight:700;margin-top:18px">今天的足迹</div>
+    <div style="margin-top:6px">
+      <sc-for list="{{trail}}" as="t" hint-placeholder-count="4">
+        <div style="display:flex;gap:12px;align-items:center;height:40px">
+          <span class="n" style="width:44px;font-size:14px;color:#5B6275">{{t.t}}</span>
+          <span style="width:10px;height:10px;border-radius:50%;border:2.5px solid #15192B;box-sizing:border-box"></span>
+          <span style="font-size:14px">{{t.x}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:center;margin-top:12px;padding-top:14px;border-top:1px solid #EEF0F4">
+      <span style="flex:1"><span style="display:block;font-size:15px;font-weight:700">到校 / 到家提醒</span><span style="display:block;font-size:12px;color:#5B6275">家、学军小学 · 进出时推送给你</span></span>
+      <span style="width:52px;height:32px;border-radius:999px;background:#15192B;position:relative;display:inline-block"><span style="position:absolute;right:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#FFFFFF"></span></span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { trail: [
+      { t: '07:38', x: '从家出发' },
+      { t: '07:55', x: '到达学军小学' },
+      { t: '16:40', x: '离开学军小学' },
+      { t: '17:02', x: '到家' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

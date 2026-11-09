@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 报告</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:1500px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;position:relative">
+  <div style="padding:40px 20px 0;display:flex;align-items:center;justify-content:space-between">
+    <span style="font-size:28px;font-weight:900">报告</span>
+    <span style="height:36px;padding:0 12px 0 4px;border-radius:999px;background:#FFFFFF;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700"><span style="width:28px;height:28px;border-radius:50%;background:#CFE3FF"></span>小宇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+  </div>
+  <div style="margin:16px 16px 0;display:flex;align-items:center;gap:10px">
+    <div style="display:flex;background:#E9ECF1;border-radius:12px;padding:4px">
+      <button style="width:52px;height:34px;border:0;border-radius:9px;background:transparent;font:500 14px 'Noto Sans SC',sans-serif;color:#5B6275">日</button>
+      <button style="width:52px;height:34px;border:0;border-radius:9px;background:#FFFFFF;font:700 14px 'Noto Sans SC',sans-serif;color:#15192B;box-shadow:0 1px 3px rgba(21,25,43,.12)">周</button>
+      <button style="width:52px;height:34px;border:0;border-radius:9px;background:transparent;font:500 14px 'Noto Sans SC',sans-serif;color:#5B6275">月</button>
+    </div>
+    <span style="flex:1"></span>
+    <button aria-label="上一周" style="width:36px;height:36px;border:0;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <span class="n" style="font-size:14px;font-weight:600">10/27 – 11/2</span>
+    <button aria-label="下一周" style="width:36px;height:36px;border:0;border-radius:50%;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:18px">
+    <div style="font-size:14px;color:#5B6275">屏幕时间</div>
+    <div style="display:flex;align-items:baseline;gap:10px;margin-top:4px">
+      <span class="n" style="font-size:34px;font-weight:800">12时46分</span>
+      <span style="font-size:13px;font-weight:700;color:#0B7A43">比前一周少 1时40分</span>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:10px;font-size:12px;color:#5B6275">
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:#15192B"></span>规定时间</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:3px;background:#FF6A1F"></span>闯关赚的</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:12px;height:150px;margin-top:12px;padding-bottom:4px;border-bottom:1px solid #E4E7EE">
+      <sc-for list="{{bars}}" as="b" hint-placeholder-count="7">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+          <span class="n" style="font-size:11px;color:#5B6275">{{b.lab}}</span>
+          <div style="width:100%;display:flex;flex-direction:column;gap:2px">
+            <div style="height:{{b.e}};background:#FF6A1F;border-radius:6px 6px 0 0"></div>
+            <div style="height:{{b.h}};background:#15192B;border-radius:{{b.r}}"></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:6px">
+      <sc-for list="{{bars}}" as="b" hint-placeholder-count="7"><span style="flex:1;text-align:center;font-size:12px;color:#5B6275">{{b.d}}</span></sc-for>
+    </div>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:18px">
+    <div style="font-size:17px;font-weight:700">用在了哪里</div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{apps}}" as="a" hint-placeholder-count="5">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="width:32px;height:32px;border-radius:9px;background:{{a.c}};color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex:none">{{a.i}}</span>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;font-size:14px"><span>{{a.n}}</span><span class="n" style="font-weight:600">{{a.v}}</span></div>
+            <div style="height:6px;border-radius:999px;background:#EEF0F4;margin-top:5px"><div style="height:6px;border-radius:999px;background:#15192B;width:{{a.w}}"></div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="margin:12px 16px 0;background:#FFFFFF;border-radius:20px;padding:18px">
+    <div style="font-size:17px;font-weight:700">学习</div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px">
+      <div style="background:#F5F6F8;border-radius:12px;padding:10px"><div class="n" style="font-size:24px;font-weight:800">18</div><div style="font-size:12px;color:#5B6275">闯关（主动 11）</div></div>
+      <div style="background:#F5F6F8;border-radius:12px;padding:10px"><div class="n" style="font-size:24px;font-weight:800">172</div><div style="font-size:12px;color:#5B6275">答题</div></div>
+      <div style="background:#F5F6F8;border-radius:12px;padding:10px"><div class="n" style="font-size:24px;font-weight:800;color:#0B7A43">84%</div><div style="font-size:12px;color:#5B6275">正确率 ↑6%</div></div>
+    </div>
+    <div style="font-size:14px;font-weight:700;margin-top:18px">知识点掌握</div>
+    <div style="margin-top:10px;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{points}}" as="p" hint-placeholder-count="5">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:14px"><span>{{p.n}} <span style="color:#5B6275;font-size:12px">{{p.s}}</span></span><span class="n" style="font-weight:700;color:{{p.fg}}">{{p.v}}</span></div>
+          <div style="height:6px;border-radius:999px;background:#EEF0F4;margin-top:5px"><div style="height:6px;border-radius:999px;background:{{p.bar}};width:{{p.v}}"></div></div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:16px;background:#FFF1E6;border-radius:12px;padding:12px;font-size:13px;color:#9A3412;line-height:1.6"><b>建议：</b>两位数退位减法错得最多，下周已自动多安排这类题。可以抽空和他一起过一遍错题。</div>
+  </div>
+
+  <div style="margin:12px 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <a href="#" style="height:52px;border-radius:14px;background:#FFFFFF;color:#15192B;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700">看错题本（9）</a>
+    <a href="#" style="height:52px;border-radius:14px;background:#15192B;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700">生成周报图片</a>
+  </div>
+
+  <nav style="position:absolute;left:0;right:0;bottom:0;height:84px;background:#FFFFFF;border-top:1px solid #E4E7EE;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:18px;box-sizing:border-box">
+    <a href="p05-today.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#5B6275;font-size:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>今天</a>
+    <a href="p09-rules.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#5B6275;font-size:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>规则</a>
+    <a href="p12-report.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#15192B;font-size:12px;font-weight:700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M3 20h18M6 16v-5M11 16V6M16 16v-8"/></svg>报告</a>
+    <a href="p15-me.dc.html" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#5B6275;font-size:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>我的</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const data = [['一', 82, 10], ['二', 90, 20], ['三', 75, 10], ['四', 90, 30], ['五', 88, 0], ['六', 150, 40], ['日', 135, 30]];
+    const k = 110 / 190;
+    const fmt = (m) => { const h = Math.floor(m / 60), r = m % 60; return h ? h + ':' + String(r).padStart(2, '0') : r + '分'; };
+    const bars = data.map(([d, base, earn]) => ({ d, lab: fmt(base + earn), h: Math.round(base * k) + 'px', e: Math.round(earn * k) + 'px', r: earn ? '0 0 6px 6px' : '6px' }));
+    const A = [['哔哩哔哩', '哔', '#4A9FE8', '4时10分', 100], ['微信', '微', '#12A150', '2时05分', 50], ['抖音', '抖', '#15192B', '1时58分', 47], ['作业帮（不限时）', '作', '#2556D9', '1时40分', 40], ['腾讯视频', '腾', '#E8590C', '1时12分', 29]];
+    const P = [['表内乘法', '数学', 95], ['认识分数', '数学', 81], ['古诗词默写', '语文', 78], ['颜色与水果单词', '英语', 90], ['两位数退位减法', '数学', 58]];
+    return {
+      bars,
+      apps: A.map(([n, i, c, v, w]) => ({ n, i, c, v, w: w + '%' })),
+      points: P.map(([n, s, v]) => ({ n, s, v: v + '%', fg: v < 65 ? '#B42318' : '#15192B', bar: v < 65 ? '#D92D20' : '#15192B' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

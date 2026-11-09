@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>电视端 闯关</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div style="width:1280px;height:720px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;padding:44px 72px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:24px">
+    <span style="height:44px;padding:0 18px;border-radius:999px;background:#15192B;color:#FFFFFF;font-size:20px;font-weight:700;display:flex;align-items:center;gap:8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>已经看了 30 分钟，闯一关再继续</span>
+    <div style="flex:1;display:flex;gap:10px;max-width:360px;margin-left:auto">
+      <span style="flex:1;height:16px;border-radius:8px;background:#12A150"></span>
+      <span style="flex:1;height:16px;border-radius:8px;background:#FF6A1F"></span>
+      <span style="flex:1;height:16px;border-radius:8px;background:#FFFFFF"></span>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;background:#FFFFFF;border-radius:44px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <span style="font-size:22px;color:#2556D9;font-weight:700">数学 · 退位减法 · 第 2 题</span>
+    <span class="n" style="font-size:96px;font-weight:800;line-height:1.15">63 − 28 = ?</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:40px">
+    <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+      <div style="height:150px;border-radius:36px;background:#FFFFFF;border:{{o.bd}};box-shadow:{{o.sh}};transform:{{o.tf}};position:relative;display:flex;align-items:center;justify-content:center;font-family:Outfit,'Noto Sans SC',sans-serif">
+        <span style="position:absolute;left:24px;top:16px;font-size:22px;font-weight:700;color:#5B6275">{{o.k}}</span>
+        <span style="font-size:72px;font-weight:800">{{o.v}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="flex:1"></div>
+  <div style="font-size:20px;color:#3D4560;text-align:center">◀ ▶ 选择答案 · 确认键提交 · 答对 3 题继续看</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { opts: [['A', '45'], ['B', '35'], ['C', '25'], ['D', '41']].map(([k, v], i) => i === 1
+      ? { k, v, bd: '4px solid #FF6A1F', sh: '0 0 0 8px #15192B, 0 18px 40px rgba(21,25,43,.25)', tf: 'scale(1.08)' }
+      : { k, v, bd: '4px solid #D5D9E2', sh: 'none', tf: 'none' }) };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 奖励时间</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;position:relative;overflow:hidden">
+  <div aria-hidden="true" style="padding:36px 16px 0;display:flex;flex-direction:column;gap:12px">
+    <div style="height:40px;width:120px;border-radius:999px;background:#15192B"></div>
+    <div style="height:250px;border-radius:24px;background:#FFFFFF"></div>
+    <div style="height:84px;border-radius:18px;background:#FFFFFF"></div>
+    <div style="height:200px;border-radius:24px;background:#FFFFFF"></div>
+  </div>
+  <a href="p05-today.dc.html" aria-label="关闭" style="position:absolute;inset:0;background:rgba(21,25,43,.5)"></a>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;background:#FFFFFF;border-radius:28px 28px 0 0;padding:10px 20px 34px">
+    <div style="width:40px;height:5px;border-radius:3px;background:#D5D9E2;margin:0 auto"></div>
+    <div style="font-size:22px;font-weight:900;margin-top:18px">奖励小宇一些时间</div>
+    <div style="font-size:14px;color:#5B6275;margin-top:4px">只加在今天，明天自动清零。</div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:18px">
+      <sc-for list="{{mins}}" as="m" hint-placeholder-count="4">
+        <button style="height:64px;border-radius:14px;border:0;background:{{m.bg}};color:{{m.fg}};font-family:Outfit,'Noto Sans SC',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <span style="font-size:24px;font-weight:800;line-height:1.1">{{m.v}}</span><span style="font-size:12px">分钟</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="font-size:15px;font-weight:700;margin-top:22px">跟孩子说一句 <span style="font-weight:400;font-size:13px;color:#5B6275">（会显示在孩子手机上）</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+      <sc-for list="{{words}}" as="w" hint-placeholder-count="4">
+        <button style="height:36px;padding:0 14px;border-radius:999px;border:{{w.border}};background:{{w.bg}};font:500 14px 'Noto Sans SC',sans-serif;color:#15192B">{{w.t}}</button>
+      </sc-for>
+    </div>
+
+    <a href="p05-today.dc.html" style="margin-top:24px;height:56px;border-radius:14px;background:#15192B;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700">奖励 <span class="n" style="margin:0 4px">30</span> 分钟</a>
+    <div style="margin-top:12px;height:44px;border-radius:12px;background:#E7F6EE;color:#0B7A43;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:700">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>点击后的反馈：已生效，小宇的手机已显示 +30 分钟
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sel = (on) => on ? { bg: '#15192B', fg: '#FFFFFF' } : { bg: '#F5F6F8', fg: '#15192B' };
+    return {
+      mins: [10, 15, 30, 60].map((v) => ({ v, ...sel(v === 30) })),
+      words: ['作业完成得好', '帮忙做家务了', '考试进步了', '周末放松一下'].map((t, i) => ({ t, bg: i === 0 ? '#FFF1E6' : '#FFFFFF', border: i === 0 ? '1.5px solid #FF6A1F' : '1.5px solid #D5D9E2' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

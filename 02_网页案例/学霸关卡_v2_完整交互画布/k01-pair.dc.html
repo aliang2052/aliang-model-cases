@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>孩子端 配对</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#EAF0FF;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B;display:flex;flex-direction:column;position:relative;overflow:hidden">
+  <svg aria-hidden="true" width="390" height="300" viewBox="0 0 390 300" style="position:absolute;left:0;top:0"><circle cx="330" cy="60" r="70" fill="#D7E3FF"/><circle cx="40" cy="250" r="40" fill="#D7E3FF"/><path d="M300 200l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" fill="#FF6A1F"/><path d="M70 90l4 8 9 1-6 6 1 9-8-4-8 4 1-9-6-6 9-1z" fill="#FFC93C"/></svg>
+
+  <div style="position:relative;padding:110px 28px 0;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <svg width="96" height="96" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#15192B"/><path d="M9 25V15a7 7 0 0 1 14 0v10" stroke="#FF6A1F" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M12.6 18.6l2.4 2.4 4.4-4.8" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div style="font-size:34px;font-weight:900;margin-top:22px">学霸关卡</div>
+    <div style="font-size:17px;color:#3D4560;margin-top:8px">闯过关卡，时间归你</div>
+  </div>
+
+  <div style="position:relative;margin:44px 20px 0;background:#FFFFFF;border-radius:28px;padding:24px 20px">
+    <div style="font-size:18px;font-weight:900;text-align:center">和爸爸妈妈连起来</div>
+    <div style="font-size:14px;color:#5B6275;text-align:center;margin-top:6px;line-height:1.6">请爸爸妈妈在他们的手机上点「添加孩子」，<br>会出现一个二维码</div>
+    <a href="k02-consent.dc.html" style="margin-top:20px;height:60px;border-radius:18px;background:#FF6A1F;box-shadow:0 4px 0 #C2410C;color:#15192B;display:flex;align-items:center;justify-content:center;gap:10px;font-size:19px;font-weight:900">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>扫一扫
+    </a>
+    <div style="font-size:13px;color:#5B6275;text-align:center;margin-top:18px">扫不了？输入二维码下面的 6 位数字</div>
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:10px">
+      <sc-for list="{{code}}" as="c" hint-placeholder-count="6">
+        <span class="n" style="height:52px;border-radius:12px;background:#F5F6F8;border:{{c.b}};box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700">{{c.v}}</span>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const v = ['4', '8', '2', '', '', ''];
+    return { code: v.map((x, i) => ({ v: x, b: i === 3 ? '2px solid #15192B' : '2px solid transparent' })) };
+  }
+}
+</script>
+</body>
+</html>

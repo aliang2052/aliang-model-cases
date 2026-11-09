@@ -1,0 +1,153 @@
+# 素材署名（发布时请放进视频简介）
+
+配乐里的乐器采样都是 CC-BY 3.0 授权，可以商用，只需要署名：
+
+- 钢琴：Salamander Grand Piano — Alexander Holm（CC-BY 3.0）
+- 弦乐 / 大提琴 / 低音提琴 / 人声 / 钢片琴 / 八音盒 / 竖琴 / 拨弦 / 定音鼓 / 太鼓 / 反向镲：FluidR3_GM — Frank Wen（CC-BY 3.0），经 gleitz/midi-js-soundfonts 转换
+
+简介里可以直接写：
+> 配乐采样：Salamander Grand Piano (Alexander Holm, CC-BY 3.0)、FluidR3_GM (Frank Wen, CC-BY 3.0)
+
+字体：思源宋体、思源黑体、霞鹜文楷、Cormorant Garamond，均为 SIL OFL 开源字体。
+
+
+# CREDITS · 素材署名
+
+本片所有第三方素材均为可商用许可，按要求署名如下。
+
+## 乐器采样
+
+- **Salamander Grand Piano V3** — 录音 / 制作：Alexander Holm
+  许可：**Creative Commons Attribution 3.0 (CC-BY 3.0)**
+  来源：https://freepats.zenvoid.org/Piano/SalamanderGrandPianoV3.html
+  本片使用其 MP3 渲染版（Tone.js 项目镜像：https://github.com/Tonejs/audio ，`salamander/` 目录），
+  取 A1–C6 共 18 个音高采样，播放时按音高移调。
+
+- **FluidR3 GM SoundFont** — 作者：Frank Wen（FluidR3 GM）
+  许可：**Creative Commons Attribution 3.0 (CC-BY 3.0)**（见 midi-js-soundfonts 仓库 README）
+  来源：https://github.com/gleitz/midi-js-soundfonts （`FluidR3_GM/` 预渲染音符）
+  本片使用乐器：string_ensemble_1（弦乐垫）、cello（大提琴）、glockenspiel（钟琴），
+  共 28 个音高采样。
+
+## 字体
+
+- **Noto Serif SC**（金句 / 章节，衬线）与 **Noto Sans SC**（界面 / 章节标题）
+  作者：Google / Noto 项目
+  许可：**SIL Open Font License 1.1**
+  来源：https://github.com/google/fonts （ofl/notoserifsc、ofl/notosanssc）
+  本片仅内嵌按实际用字子集化后的 woff2（工具：fontTools）。
+
+## 内容来源
+
+- 观点与故事素材来自 Michael 的视频《关于爱情：我终于想明白了几件事》逐字稿
+  （本地 Whisper 转写校正稿）。本片文案为**完全重写**的提炼与再创作，
+  视觉隐喻、角色、配乐、音效均为原创。
+
+## 原创部分
+
+- 播放引擎（Canvas + Web Audio）、配乐总谱、程序化音效、角色骨骼动画、
+  场景与胶片后期：本项目原创代码（`src/`）。
+- 混音采用 ITU-R BS.1770 K 加权响度计量与峰值限幅，目标 -16 LUFS。
+
+---
+如需在发布文案中署名，可简写：
+> 钢琴采样：Salamander Grand Piano (Alexander Holm, CC-BY 3.0)；
+> 管弦采样：FluidR3 GM (CC-BY 3.0)；字体：Noto (OFL 1.1)。
+
+# 素材来源
+
+- 乐曲：W. A. Mozart《Rondo alla Turca》K.331，Mutopia Project Music ID 108（Rune Zedeler / Chris Sawer 排版），公有领域。
+- 钢琴采样：Salamander Grand Piano，Alexander Holm，CC BY 3.0。
+- 其余音效与全部画面由代码生成。
+- 弦乐、铜管、定音鼓、军鼓、大鼓、镲的试听版本：VSCO 2 Community Edition，CC0。
+- 吉他采样：FreePats Spanish Classical Guitar（roberto@zenvoid.org 录制），CC0 1.0。
+- 《卡门》前奏曲录音：Musopen，经 Wikimedia Commons，CC0。
+- 《卡门》前奏曲钢琴缩编谱（G. Schirmer 1895）：Mutopia Project Music ID 635，录入版 CC BY-SA 2.5。
+
+
+# 素材来源
+
+- 《卡门》前奏曲管弦乐录音（carmen_prelude.ogg）：Musopen，经 Wikimedia Commons，CC0。
+- 《卡门》前奏曲钢琴缩编谱（carmen_prelude.mid）：G. Schirmer 1895，Mutopia Project Music ID 635，录入版 CC BY-SA 2.5。
+- 钢琴采样（piano/）：Salamander Grand Piano，Alexander Holm，CC BY 3.0（见 SALAMANDER-LICENSE.txt）。
+- 对音采样（vsco/）：VSCO 2 Community Edition，CC0。
+- 乐谱字形（glyphs.json）：从用户自己的「光之乐谱」案例（光之乐谱-参考案例.html）里提取的字形数据。
+- 其余画面与音效全部由代码生成。
+
+
+The MIT License
+
+Copyright © 2010-2026 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+Salamander Grand Piano V2
+Yamaha C5
+
+
+Technical info
+
+Recorded @ 48khz24bit
+16 Velocity layers Sampled in minor thirds from the lowest A.
+Hammer noise releases chromatically sampled in onle one layer.
+String resonance releases in minor thirds in three layers. 
+Two AKG c414 disposed in an AB position ~12cm above the strings
+
+
+Some other general info:
+This piano has been optimized and only properly tested for linuxsampler.
+If you want to optimize the .sfz yourself, values of interest are:
+-amp_veltrack (dynamics, %)
+-ampeg_release (note release decay, seconds)
+-The volume(in dB) on the pedal noise is located on the bottom of the .sfz file under //pedalAction
+[!] I suggest you make a backup of the .sfz file before you start fiddling with it :)
+In the time of writing, sfz for linuxsampler has not come out of cvs. So, it's still a bit of a pain to get this paino going.
+
+Changlog:
+V3
+* Removed rowchange after every opcode the .sfz file should be more human readable for people who'd like to customize things.
+* Re-export A5v7-15 that had noticeable delay in beginning of file.
+* Adjusted the velocity at wich notes are triggered.
+* Increased ampeg_release to 1.000
+* Decreased amp_veltrack to 75
+* Retuned version by Markus Fiedler
+* The old V2 .sfz should work so no need to delete it if you like it :)
+* fixed a missing note
+
+V2:
+* Re-exported all notes with all lowcut filters removed and eased off some eq on some notes around C4
+* Replaced all pedal noise samples, there are now two down and two up samples.
+* Increased ampeg_veltrack on release harmonics from A0 to C2
+* Increased ampeg_release to 0.850
+* Introduced a 44.1khz16bit and an ogg vorbis version
+
+
+Licence: 
+
+CC-by
+http://creativecommons.org/licenses/by/3.0/
+
+
+Author: Alexander Holm
+Feel free to mail me with any questions, if you're lucky, I might just answer them ;)
+axeldenstore (at) gmail (dot) com
+
+
+

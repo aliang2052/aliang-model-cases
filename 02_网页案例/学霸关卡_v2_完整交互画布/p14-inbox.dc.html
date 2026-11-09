@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>家长端 消息中心</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=Outfit:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.n{font-family:Outfit,'Noto Sans SC',sans-serif;font-variant-numeric:tabular-nums}
+a{color:#2556D9;text-decoration:none}a:hover{color:#1A3FA8}
+</style>
+</helmet>
+<div style="width:390px;height:960px;box-sizing:border-box;background:#F5F6F8;font-family:'Noto Sans SC',system-ui,sans-serif;color:#15192B">
+  <div style="height:56px;display:flex;align-items:center;padding:0 8px;margin-top:24px">
+    <a href="p05-today.dc.html" aria-label="返回" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#15192B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+    <span style="font-size:18px;font-weight:700;margin-left:4px;flex:1">消息</span>
+    <button style="height:36px;padding:0 12px;border:0;background:transparent;font:500 14px 'Noto Sans SC',sans-serif;color:#5B6275">全部已读</button>
+  </div>
+  <div style="display:flex;gap:8px;padding:4px 16px 0">
+    <button style="height:34px;padding:0 14px;border-radius:999px;border:0;background:#15192B;color:#FFFFFF;font:700 13px 'Noto Sans SC',sans-serif">全部</button>
+    <button style="height:34px;padding:0 14px;border-radius:999px;border:0;background:#FFFFFF;color:#15192B;font:700 13px 'Noto Sans SC',sans-serif">待处理 1</button>
+    <button style="height:34px;padding:0 14px;border-radius:999px;border:0;background:#FFFFFF;color:#15192B;font:700 13px 'Noto Sans SC',sans-serif">守护提醒</button>
+    <button style="height:34px;padding:0 14px;border-radius:999px;border:0;background:#FFFFFF;color:#15192B;font:700 13px 'Noto Sans SC',sans-serif">学习</button>
+  </div>
+
+  <div style="padding:18px 20px 8px;font-size:13px;font-weight:700;color:#5B6275">今天</div>
+  <div style="margin:0 16px;background:#FFFFFF;border-radius:20px;padding:0 16px">
+    <sc-for list="{{today}}" as="m" hint-placeholder-count="5">
+      <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #EEF0F4">
+        <span style="width:38px;height:38px;border-radius:50%;background:{{m.bg}};flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:{{m.dot}}"></span></span>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="flex:1;font-size:15px;font-weight:700">{{m.t}}</span><span class="n" style="font-size:12px;color:#5B6275">{{m.time}}</span></div>
+          <div style="font-size:13px;color:#5B6275;margin-top:3px;line-height:1.5">{{m.d}}</div>
+          <sc-if value="{{m.act}}" hint-placeholder-val="{{false}}">
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button style="height:34px;padding:0 14px;border-radius:10px;border:0;background:#15192B;color:#FFFFFF;font:700 13px 'Noto Sans SC',sans-serif">{{m.a1}}</button>
+              <button style="height:34px;padding:0 14px;border-radius:10px;border:1.5px solid #D5D9E2;background:#FFFFFF;color:#15192B;font:700 13px 'Noto Sans SC',sans-serif">{{m.a2}}</button>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="padding:18px 20px 8px;font-size:13px;font-weight:700;color:#5B6275">昨天</div>
+  <div style="margin:0 16px;background:#FFFFFF;border-radius:20px;padding:0 16px">
+    <sc-for list="{{yday}}" as="m" hint-placeholder-count="3">
+      <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #EEF0F4">
+        <span style="width:38px;height:38px;border-radius:50%;background:{{m.bg}};flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:{{m.dot}}"></span></span>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="flex:1;font-size:15px;font-weight:700">{{m.t}}</span><span class="n" style="font-size:12px;color:#5B6275">{{m.time}}</span></div>
+          <div style="font-size:13px;color:#5B6275;margin-top:3px;line-height:1.5">{{m.d}}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const K = {
+      req: { bg: '#FFF1E6', dot: '#FF6A1F' },
+      bad: { bg: '#FDECEA', dot: '#D92D20' },
+      warn: { bg: '#FFF4DB', dot: '#F5A524' },
+      ok: { bg: '#E7F6EE', dot: '#12A150' },
+      info: { bg: '#EAF0FF', dot: '#2556D9' }
+    };
+    const m = (k, t, time, d, a1, a2) => ({ ...K[k], t, time, d, act: !!a1, a1: a1 || '', a2: a2 || '' });
+    return {
+      today: [
+        m('req', '小宇申请加时 30 分钟', '19:53', '“作业写完了，想把这集看完。”', '同意', '不行'),
+        m('bad', '守护异常：屏幕监控被关闭', '19:51', '已自动锁屏。需要在孩子手机上重新打开无障碍。', '查看处理方法', '稍后'),
+        m('warn', '今天的 2 小时用完了', '19:48', '孩子可以闯关继续（今天还能赚 10 分钟）'),
+        m('ok', '通关第 3 关', '19:10', '数学 3/3 全对，赚了 10 分钟'),
+        m('info', '新装了「蛋仔派对」', '17:02', '游戏类，还没设置怎么管', '去设置', '先计入时长')
+      ],
+      yday: [
+        m('info', '位置守护被暂停了 20 分钟', '20:15', '小宇在孩子端点了暂停，20:35 自动恢复'),
+        m('warn', '设备离线超过 30 分钟', '18:02', 'Redmi Pad SE 断网，期间规则仍在本地执行'),
+        m('ok', '上周学习报告已生成', '09:00', '正确率 84%，比前一周提升 6%')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
